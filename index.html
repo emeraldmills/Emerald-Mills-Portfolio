@@ -1,36 +1,128 @@
-<div class="openBook" id="book">
-  <div class="page active">
-    <h2>Contents</h2>
-    <ol>
-      <li>About</li>
-      <li>Projects</li>
-      <li>Resume</li>
-      <li>Contact</li>
-    </ol>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Finance Portfolio | Emerald Mills</title>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="desk">
+
+    <!-- LEFT: closed cover book (just for the look) -->
+    <section class="coverBook" aria-label="Portfolio cover">
+      <div class="spine"><span>PORTFOLIO</span></div>
+
+      <div class="coverFace">
+        <div class="coverTop">
+          <div class="dotGrid"></div>
+          <div class="miniBar"></div>
+        </div>
+
+        <div class="coverCard">
+          <div class="smallLabel">FINANCE PORTFOLIO</div>
+          <div class="name">Emerald Mills</div>
+          <div class="meta">Eastern Michigan University • 2026</div>
+        </div>
+
+        <div class="coverBand">
+          <span class="pill"></span>
+          <span class="bandText">Selective Work & Projects</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: the actual flip book -->
+    <section class="bookShell" aria-label="Flipbook">
+      <div class="hint">Tip: drag the page corner to flip (buttons are a backup)</div>
+
+      <div id="book" class="book">
+        <!-- Page 1 -->
+        <div class="page active">
+          <div class="pageInner">
+            <h2>Contents</h2>
+            <ol>
+              <li>Intro</li>
+              <li>About</li>
+              <li>Projects</li>
+              <li>Resume</li>
+              <li>Contact</li>
+              <li>Thank You</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page">
+          <div class="pageInner">
+            <h1>Emerald Mills</h1>
+            <p class="sub">Finance Portfolio • EMU • 2026</p>
+            <p>(Intro page — quick summary goes here later.)</p>
+          </div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page">
+          <div class="pageInner">
+            <h2>About</h2>
+            <p>Write 3–5 lines about you.</p>
+            <div class="twoCol">
+              <div>
+                <h3>Interests</h3>
+                <ul>
+                  <li>Investing</li>
+                  <li>Wealth management</li>
+                  <li>Financial planning</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Strengths</h3>
+                <ul>
+                  <li>Communication</li>
+                  <li>Organization</li>
+                  <li>Consistency</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page">
+          <div class="pageInner">
+            <h2>Projects</h2>
+            <p>Add your projects here later.</p>
+          </div>
+        </div>
+
+        <!-- Page 5 -->
+        <div class="page">
+          <div class="pageInner">
+            <h2>Resume</h2>
+            <p>Paste highlights or link a PDF later.</p>
+          </div>
+        </div>
+
+        <!-- Page 6 -->
+        <div class="page">
+          <div class="pageInner">
+            <h2>Contact</h2>
+            <p>Email / LinkedIn / whatever you want to share.</p>
+            <p class="thanks">Thank you for viewing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="prevBtn" type="button">Back</button>
+        <button id="nextBtn" type="button">Next</button>
+      </div>
+    </section>
+
   </div>
 
-  <div class="page">
-    <h2>About Me</h2>
-    <p>Write 3–5 lines about you. Keep it real.</p>
-  </div>
-
-  <div class="page">
-    <h2>Projects</h2>
-    <p>Project 1…</p>
-  </div>
-
-  <div class="page">
-    <h2>Resume</h2>
-    <p>Put your resume highlights…</p>
-  </div>
-
-  <div class="page">
-    <h2>Contact</h2>
-    <p>Email / LinkedIn…</p>
-  </div>
-</div>
-
-<div class="controls">
-  <button id="prevBtn">Back</button>
-  <button id="nextBtn">Next</button>
-</div>
+  <script src="./script.js"></script>
+</body>
+</html>
