@@ -5,7 +5,8 @@ function render() {
   pages.forEach((p, i) => {
     p.classList.toggle("active", i === index);
     p.classList.toggle("flipped", i < index);
-    // keep stack order stable
+
+    // Keep stacking consistent
     p.style.zIndex = i === index ? 10 : (i < index ? 2 : 1);
   });
 
@@ -22,5 +23,59 @@ document.getElementById("prevBtn").addEventListener("click", () => {
   if (index > 0) index--;
   render();
 });
+
+/* Mouse / Trackpad drag flipping (does NOT remove buttons) */
+const bookEl = document.getElementById("book");
+let dragging = false;
+let startX = 0;
+let moved = false;
+
+bookEl.addEventListener("mousedown", (e) => {
+  dragging = true;
+  moved = false;
+  startX = e.clientX;
+});
+
+window.addEventListener("mousemove", (e) => {
+  if (!dragging) return;
+  const dx = e.clientX - startX;
+  if (Math.abs(dx) > 10) moved = true;
+});
+
+window.addEventListener("mouseup", (e) => {
+  if (!dragging) return;
+  dragging = false;
+
+  const dx = e.clientX - startX;
+  if (!moved) return;
+
+  // Drag left = next, drag right = back
+  if (dx < -60 && index < pages.length - 1) {
+    index++;
+    render();
+  } else if (dx > 60 && index > 0) {
+    index--;
+    render();
+  }
+});
+
+/* Touch support (phone/tablet) */
+bookEl.addEventListener("touchstart", (e) => {
+  const t = e.touches[0];
+  startX = t.clientX;
+}, { passive: true });
+
+bookEl.addEventListener("touchend", (e) => {
+  const t = e.changedTouches[0];
+  const dx = t.clientX - startX;
+
+  if (dx < -60 && index < pages.length - 1) {
+    index++;
+    render();
+  } else if (dx > 60 && index > 0) {
+    index--;
+    render();
+  }
+}, { passive: true });
 
 render();
