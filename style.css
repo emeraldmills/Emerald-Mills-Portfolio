@@ -175,11 +175,9 @@ body{
   opacity: 0;
   pointer-events: none;
 
-  /* Realistic flip feel */
+  /* Flip feel */
   backface-visibility: hidden;
   transform-style: preserve-3d;
-
-  /* Default speed (drag/normal) */
   transition: transform 1400ms cubic-bezier(.18,.9,.18,1);
 }
 
@@ -209,7 +207,7 @@ body{
   opacity:.35;
 }
 
-/* “paper bend” shadow */
+/* Base shadow */
 .page::after{
   content:"";
   position:absolute;
@@ -281,6 +279,61 @@ button{
 }
 #nextBtn{ background: var(--orangeDark); }
 button:disabled{ opacity:.45; cursor:not-allowed; }
+
+/* ----- NEW: Page bend illusion while turning ----- */
+.bendFX{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0;
+}
+
+.page.turning .bendFX{
+  opacity:1;
+  animation: bendGlow 2800ms cubic-bezier(.18,.9,.18,1) both;
+}
+
+/* A subtle “bend” glow + curved edge shadow */
+@keyframes bendGlow{
+  0%{
+    opacity:0;
+    background:
+      radial-gradient(120px 520px at 0% 50%, rgba(0,0,0,0), rgba(0,0,0,0) 60%),
+      linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0));
+  }
+  35%{
+    opacity:1;
+    background:
+      radial-gradient(150px 520px at 8% 50%, rgba(0,0,0,.22), rgba(0,0,0,0) 62%),
+      linear-gradient(90deg,
+        rgba(0,0,0,.22) 0%,
+        rgba(0,0,0,.10) 12%,
+        transparent 40%,
+        transparent 60%,
+        rgba(0,0,0,.10) 88%,
+        rgba(0,0,0,.22) 100%
+      );
+  }
+  70%{
+    opacity:1;
+    background:
+      radial-gradient(160px 520px at 12% 50%, rgba(0,0,0,.18), rgba(0,0,0,0) 65%),
+      linear-gradient(90deg,
+        rgba(0,0,0,.16) 0%,
+        rgba(0,0,0,.08) 12%,
+        transparent 45%,
+        transparent 55%,
+        rgba(0,0,0,.08) 88%,
+        rgba(0,0,0,.16) 100%
+      );
+  }
+  100%{
+    opacity:0;
+    background:
+      radial-gradient(120px 520px at 0% 50%, rgba(0,0,0,0), rgba(0,0,0,0) 60%),
+      linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0));
+  }
+}
 
 /* Mobile: stack the two books */
 @media (max-width: 900px){
