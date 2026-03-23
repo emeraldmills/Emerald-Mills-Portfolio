@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Finance Portfolio | Emerald Mills</title>
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
   <div class="desk">
 
-    <!-- LEFT CLOSED BOOK -->
+    <!-- LEFT CLOSED BOOK (unchanged look) -->
     <section class="coverBook" aria-label="Portfolio cover">
       <div class="spine"><span>PORTFOLIO</span></div>
 
@@ -33,13 +34,16 @@
       </div>
     </section>
 
-    <!-- RIGHT FLIPBOOK -->
+    <!-- RIGHT OPEN BOOK (StPageFlip) -->
     <section class="bookShell" aria-label="Flipbook">
-      <div class="hint">Tip: drag left/right on the book to flip (buttons work too)</div>
+      <div class="hint">Tip: drag the page corner to flip (buttons work too)</div>
 
-      <div id="book" class="book">
-        <!-- Page 1 -->
-        <div class="page active">
+      <!-- This is where PageFlip renders -->
+      <div id="book" class="book"></div>
+
+      <!-- Your pages live in this hidden container -->
+      <div id="pages" class="pages" aria-hidden="true">
+        <div class="pf-page">
           <div class="pageInner">
             <h2>Contents</h2>
             <ol>
@@ -51,21 +55,17 @@
               <li>Thank You</li>
             </ol>
           </div>
-          <div class="bendFX"></div>
         </div>
 
-        <!-- Page 2 -->
-        <div class="page">
+        <div class="pf-page">
           <div class="pageInner">
             <h1>Emerald Mills</h1>
             <p class="sub">Finance Portfolio • EMU • 2026</p>
             <p>(Intro page — quick summary goes here later.)</p>
           </div>
-          <div class="bendFX"></div>
         </div>
 
-        <!-- Page 3 -->
-        <div class="page">
+        <div class="pf-page">
           <div class="pageInner">
             <h2>About</h2>
             <p>Write 3–5 lines about you.</p>
@@ -89,35 +89,28 @@
               </div>
             </div>
           </div>
-          <div class="bendFX"></div>
         </div>
 
-        <!-- Page 4 -->
-        <div class="page">
+        <div class="pf-page">
           <div class="pageInner">
             <h2>Projects</h2>
             <p>Add your projects here later.</p>
           </div>
-          <div class="bendFX"></div>
         </div>
 
-        <!-- Page 5 -->
-        <div class="page">
+        <div class="pf-page">
           <div class="pageInner">
             <h2>Resume</h2>
             <p>Paste highlights or link a PDF later.</p>
           </div>
-          <div class="bendFX"></div>
         </div>
 
-        <!-- Page 6 -->
-        <div class="page">
+        <div class="pf-page">
           <div class="pageInner">
             <h2>Contact</h2>
             <p>Email / LinkedIn / whatever you want to share.</p>
             <p class="thanks">Thank you for viewing.</p>
           </div>
-          <div class="bendFX"></div>
         </div>
       </div>
 
@@ -129,6 +122,8 @@
 
   </div>
 
+  <!-- StPageFlip (CDN) -->
+  <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>
