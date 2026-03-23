@@ -1,179 +1,52 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emerald Mills Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+<div class="bookWrap">
+  <div class="coverBook">
+    <!-- left closed cover -->
+  </div>
 
-<body>
-  <main class="desk">
-    <!-- LEFT: closed book cover -->
-    <section class="coverBook" aria-label="Portfolio cover">
-      <div class="spine">
-        <span class="spineText">PORTFOLIO</span>
-      </div>
-
-      <div class="coverFace">
-        <div class="coverTop">
-          <div class="dotGrid"></div>
-          <div class="miniBar"></div>
+  <div id="book" class="book">
+    <section class="page active">
+      <div class="spread">
+        <div class="leftPage">
+          <h2>Contents</h2>
+          <ol>
+            <li>About</li>
+            <li>Projects</li>
+            <li>Resume</li>
+            <li>Contact</li>
+          </ol>
         </div>
-
-        <div class="coverTitleBlock">
-          <div class="smallLabel">Marketing Portfolio</div>
-          <h1 class="coverTitle">Emerald Mills</h1>
-          <p class="coverMeta">Eastern Michigan University • 2026</p>
-        </div>
-
-        <div class="coverTag">
-          <div class="tagLine"></div>
-          <div class="tagText">Selective Work & Projects</div>
+        <div class="rightPage">
+          <h1>Emerald Mills</h1>
+          <p>Finance Portfolio • EMU • 2026</p>
+          <p>(This will be your intro page)</p>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT: open flipbook -->
-    <section class="openBookWrap" aria-label="Open portfolio book">
-      <div class="openBookTopBar">
-        <div class="hint">Tip: Drag the page corner to flip</div>
-        <div class="controls">
-          <button id="prevBtn" type="button">Back</button>
-          <button id="nextBtn" type="button">Next</button>
-        </div>
-      </div>
-
-      <div id="flipbook" class="flipbook">
-        <!-- Page 1 (right side when opened) -->
-        <div class="page">
-          <div class="pagePad">
-            <div class="pill">Marketing Portfolio</div>
-            <h2 class="bigName">Emerald Mills</h2>
-            <p class="subText">Eastern Michigan University • 2026</p>
-
-            <div class="card">
-              <h3>Tagline</h3>
-              <p>One sentence about what you’re into (branding, social, analytics, etc.).</p>
-            </div>
-
-            <div class="twoCol">
-              <div class="miniCard">
-                <h4>Interests</h4>
-                <ul>
-                  <li>Branding</li>
-                  <li>Social media content</li>
-                  <li>Analytics</li>
-                </ul>
-              </div>
-              <div class="miniCard">
-                <h4>Strengths</h4>
-                <ul>
-                  <li>Communication</li>
-                  <li>Organization</li>
-                  <li>Consistency</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Page 2 -->
-        <div class="page">
-          <div class="pagePad">
-            <h2>About Me</h2>
-            <p>
-              Write 3–5 lines about you. Keep it real. What do you like about marketing?
-              What are you working toward?
-            </p>
-
-            <div class="divider"></div>
-
-            <h3>Quick Wins</h3>
-            <ul>
-              <li>Built class projects using Excel + dashboards</li>
-              <li>Learning web basics (GitHub Pages, HTML/CSS)</li>
-              <li>Interested in marketing + business strategy</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Page 3 -->
-        <div class="page">
-          <div class="pagePad">
-            <h2>Projects</h2>
-
-            <div class="project">
-              <h3>Project 1 — Marketing Campaign Idea</h3>
-              <p>Short description of what you did and what the goal was.</p>
-              <div class="chips">
-                <span>Branding</span><span>Strategy</span><span>Content</span>
-              </div>
-            </div>
-
-            <div class="project">
-              <h3>Project 2 — Data / Dashboard</h3>
-              <p>Short description (tools you used + what you learned).</p>
-              <div class="chips">
-                <span>Excel</span><span>Charts</span><span>Analysis</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Page 4 -->
-        <div class="page">
-          <div class="pagePad">
-            <h2>Resume</h2>
-            <p>Add a few bullet highlights (keep it short).</p>
-
-            <div class="divider"></div>
-
-            <h3>Skills</h3>
-            <ul>
-              <li>Communication</li>
-              <li>Organization</li>
-              <li>Basic Excel + charts</li>
-              <li>Beginner HTML/CSS</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Page 5 -->
-        <div class="page">
-          <div class="pagePad">
-            <h2>Contact</h2>
-            <p>Add your links below.</p>
-
-            <div class="contact">
-              <p><strong>Email:</strong> youremail@example.com</p>
-              <p><strong>LinkedIn:</strong> linkedin.com/in/yourname</p>
-            </div>
-
-            <div class="divider"></div>
-
-            <p class="tiny">
-              Built with GitHub Pages • Flip effect powered by Turn.js
-            </p>
-          </div>
-        </div>
-
-        <!-- Page 6 (optional) -->
-        <div class="page">
-          <div class="pagePad">
-            <h2>Thanks for reading</h2>
-            <p>That’s it ✨</p>
-          </div>
-        </div>
+    <section class="page">
+      <div class="spread">
+        <div class="leftPage"><h2>About Me</h2></div>
+        <div class="rightPage"><h2>Quick Wins</h2></div>
       </div>
     </section>
-  </main>
 
-  <!-- Libraries -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+    <section class="page">
+      <div class="spread">
+        <div class="leftPage"><h2>Projects</h2></div>
+        <div class="rightPage"><h2>Resume</h2></div>
+      </div>
+    </section>
 
-  <!-- Your JS -->
-  <script src="script.js"></script>
-</body>
-</html>
+    <section class="page">
+      <div class="spread">
+        <div class="leftPage"><h2>Contact</h2></div>
+        <div class="rightPage"><h2>Thank You</h2></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="controls">
+    <button id="prevBtn">Back</button>
+    <button id="nextBtn">Next</button>
+  </div>
+</div>
