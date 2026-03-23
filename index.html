@@ -1,52 +1,161 @@
-<div class="bookWrap">
-  <div class="coverBook">
-    <!-- left closed cover -->
-  </div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emerald Mills | Finance Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 
-  <div id="book" class="book">
-    <section class="page active">
-      <div class="spread">
-        <div class="leftPage">
-          <h2>Contents</h2>
-          <ol>
-            <li>About</li>
-            <li>Projects</li>
-            <li>Resume</li>
-            <li>Contact</li>
-          </ol>
+  <!-- Turn.js (page flip) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+</head>
+
+<body>
+  <main class="desk">
+    <!-- LEFT: closed book cover -->
+    <section class="coverBook" aria-label="Portfolio cover">
+      <div class="spine"><span class="spineText">PORTFOLIO</span></div>
+
+      <div class="coverFace">
+        <div class="coverTop">
+          <div class="dotGrid"></div>
+          <div class="miniBar"></div>
         </div>
-        <div class="rightPage">
-          <h1>Emerald Mills</h1>
-          <p>Finance Portfolio • EMU • 2026</p>
-          <p>(This will be your intro page)</p>
+
+        <div class="coverTitleBlock">
+          <div class="smallLabel">Finance Portfolio</div>
+          <h1 class="coverTitle">Emerald Mills</h1>
+          <p class="coverMeta">Eastern Michigan University • 2026</p>
+        </div>
+
+        <div class="coverBand">
+          <div class="coverBandLine"></div>
+          <div class="coverBandText">Selective Work & Projects</div>
         </div>
       </div>
     </section>
 
-    <section class="page">
-      <div class="spread">
-        <div class="leftPage"><h2>About Me</h2></div>
-        <div class="rightPage"><h2>Quick Wins</h2></div>
+    <!-- RIGHT: open flipbook -->
+    <section class="openBookWrap">
+      <div class="hint">Tip: drag the page corner to flip</div>
+
+      <div id="flipbook" class="flipbook">
+        <!-- Page 1 -->
+        <section class="page">
+          <div class="pageInner">
+            <h2>Contents</h2>
+            <ol class="contents">
+              <li>About</li>
+              <li>Projects</li>
+              <li>Resume</li>
+              <li>Contact</li>
+            </ol>
+
+            <hr class="rule" />
+
+            <h1 class="name">Emerald Mills</h1>
+            <p class="sub">Finance Portfolio • EMU • 2026</p>
+
+            <p class="muted">(This will be your intro page)</p>
+          </div>
+        </section>
+
+        <!-- Page 2 -->
+        <section class="page">
+          <div class="pageInner">
+            <h2>About Me</h2>
+            <p class="muted">Write 3–5 lines about you. Keep it real.</p>
+
+            <div class="twoCols">
+              <div class="card">
+                <h3>Interests</h3>
+                <ul>
+                  <li>Investing</li>
+                  <li>Wealth management</li>
+                  <li>Financial planning</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Strengths</h3>
+                <ul>
+                  <li>Organization</li>
+                  <li>Communication</li>
+                  <li>Consistency</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Page 3 -->
+        <section class="page">
+          <div class="pageInner">
+            <h2>Projects</h2>
+            <p class="muted">Add 2–4 projects here (class projects count).</p>
+
+            <div class="card">
+              <h3>Project 1</h3>
+              <p>Short description.</p>
+            </div>
+
+            <div class="card">
+              <h3>Project 2</h3>
+              <p>Short description.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Page 4 -->
+        <section class="page">
+          <div class="pageInner">
+            <h2>Resume</h2>
+            <p class="muted">Drop your resume highlights or a link.</p>
+
+            <div class="card">
+              <h3>Experience</h3>
+              <ul>
+                <li>Role • Company • Dates</li>
+                <li>Role • Company • Dates</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Skills</h3>
+              <p>Excel • Communication • Customer service • etc.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Page 5 -->
+        <section class="page">
+          <div class="pageInner">
+            <h2>Contact</h2>
+            <p class="muted">Add your contact info.</p>
+
+            <div class="card">
+              <p><strong>Email:</strong> yourname@email.com</p>
+              <p><strong>LinkedIn:</strong> linkedin.com/in/yourname</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Page 6 -->
+        <section class="page">
+          <div class="pageInner">
+            <h2>Thank You</h2>
+            <p class="muted">That’s it — more coming soon.</p>
+          </div>
+        </section>
+      </div>
+
+      <div class="controls">
+        <button id="prevBtn" type="button">Back</button>
+        <button id="nextBtn" type="button">Next</button>
       </div>
     </section>
+  </main>
 
-    <section class="page">
-      <div class="spread">
-        <div class="leftPage"><h2>Projects</h2></div>
-        <div class="rightPage"><h2>Resume</h2></div>
-      </div>
-    </section>
-
-    <section class="page">
-      <div class="spread">
-        <div class="leftPage"><h2>Contact</h2></div>
-        <div class="rightPage"><h2>Thank You</h2></div>
-      </div>
-    </section>
-  </div>
-
-  <div class="controls">
-    <button id="prevBtn">Back</button>
-    <button id="nextBtn">Next</button>
-  </div>
-</div>
+  <script src="script.js"></script>
+</body>
+</html>
