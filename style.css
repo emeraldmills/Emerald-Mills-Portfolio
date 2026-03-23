@@ -1,16 +1,17 @@
 :root{
   --bg:#d7d4cf;
-  --paper:#f6f3ef;
+  --paper:#f5f1ea;
   --ink:#141414;
-  --muted:#666;
+  --muted:#6b6b6b;
   --shadow:0 20px 60px rgba(0,0,0,.25);
-
   --orange:#e46b2c;
   --orangeDark:#b64618;
-  --coverGray:#3d3a38;
+  --coverGray:#6b6460;
+  --radius:14px;
 }
 
 *{ box-sizing:border-box; }
+
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -18,12 +19,11 @@ body{
   color:var(--ink);
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   padding:24px;
 }
 
-/* layout */
 .desk{
   width:min(1200px, 100%);
   display:grid;
@@ -36,202 +36,256 @@ body{
 .coverBook{
   position:relative;
   height:560px;
-  border-radius:16px;
-  box-shadow: var(--shadow);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
   background: var(--coverGray);
   overflow:hidden;
   display:flex;
 }
 
 .spine{
-  width:72px;
-  background: rgba(255,255,255,.08);
+  width:80px;
+  background: rgba(0,0,0,.18);
   display:flex;
   align-items:center;
   justify-content:center;
 }
-.spine span{
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+
+.spineText{
+  color:#e8e6e4;
   letter-spacing:.35em;
   font-weight:700;
-  color:rgba(255,255,255,.8);
+  transform: rotate(-90deg);
 }
 
 .coverFace{
   flex:1;
-  padding:26px;
-  position:relative;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
 }
 
 .coverTop{
   display:flex;
-  gap:14px;
+  justify-content:space-between;
   align-items:flex-start;
-  margin-bottom:22px;
 }
+
 .dotGrid{
   width:120px;
-  height:72px;
-  background:
-    radial-gradient(rgba(255,255,255,.35) 1px, transparent 1px);
+  height:60px;
+  background-image: radial-gradient(rgba(255,255,255,.25) 1.2px, transparent 1.2px);
   background-size:8px 8px;
   border-radius:10px;
-  opacity:.6;
-}
-.miniBar{
-  width:180px;
-  height:12px;
-  border-radius:999px;
-  background: rgba(255,255,255,.2);
-  margin-top:10px;
 }
 
-.coverCard{
-  background: rgba(255,255,255,.9);
-  border-radius:12px;
-  padding:18px 16px;
-  width:78%;
-  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+.miniBar{
+  width:140px;
+  height:10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.18);
 }
+
+.coverTitleBlock{
+  background: rgba(245,241,234,.95);
+  border: 3px solid rgba(0,0,0,.08);
+  border-radius:12px;
+  padding:18px 18px 14px;
+  width: fit-content;
+  max-width: 100%;
+}
+
 .smallLabel{
   font-size:12px;
-  letter-spacing:.12em;
-  color:#444;
-  margin-bottom:8px;
-}
-.name{
-  font-size:30px;
-  font-weight:800;
-  margin:0 0 6px;
-}
-.meta{
-  color:#333;
-  font-size:14px;
+  letter-spacing:.18em;
+  opacity:.75;
 }
 
-.coverBand{
-  position:absolute;
-  left:26px;
-  right:26px;
-  bottom:26px;
+.coverTitle{
+  margin:6px 0 0;
+  font-size:34px;
+  line-height:1.05;
+}
+
+.coverMeta{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.coverOrange{
+  margin-top:auto;
   background: var(--orange);
-  color:#111;
-  border-radius:10px;
-  padding:14px 14px;
+  border-radius:12px;
+  padding:14px 16px;
   display:flex;
   align-items:center;
   gap:10px;
-  box-shadow: 0 16px 30px rgba(0,0,0,.25);
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.12);
 }
-.pill{
-  width:10px;
-  height:26px;
-  border-radius:999px;
-  background:#111;
-  display:inline-block;
-}
-.bandText{
+
+.coverOrangeText{
+  color:#1a1a1a;
   font-weight:700;
 }
 
-/* RIGHT BOOK */
-.bookShell{ width:100%; }
-.hint{
-  text-align:center;
+.pill{
+  width:10px;
+  height:22px;
+  border-radius:6px;
+  background: rgba(0,0,0,.55);
+}
+
+/* RIGHT OPEN FLIPBOOK */
+.bookShell{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:flex-end;
+}
+
+.tip{
+  align-self:flex-start;
   color:var(--muted);
   font-size:12px;
-  margin-bottom:10px;
+  margin-left:2px;
 }
 
-/* The PageFlip canvas container */
-.book{
-  width: 760px;
+/* this wrapper holds the turn.js book */
+.bookWrap{
+  position:relative;
+  width: 860px;
+  max-width: 100%;
   height: 560px;
-  margin: 0 auto;
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
-  border-radius:16px;
+  background: #ddd;
   overflow:hidden;
-  background: transparent;
 }
 
-/* Hide the source pages container */
-.pages{
-  display:none;
+/* Turn.js container */
+#flipbook{
+  width:100%;
+  height:100%;
 }
 
-/* Page styling */
-.pf-page{
+/* each page */
+.page{
   background: var(--paper);
-  width: 380px;          /* half width (two pages = 760) */
-  height: 560px;
-  border-radius: 6px;
-  overflow:hidden;
-  position: relative;
 }
 
-/* paper texture + center crease illusion on each page */
-.pf-page::before{
+/* inside page padding */
+.pageInner{
+  height:100%;
+  padding:34px 38px;
+  position:relative;
+}
+
+/* subtle paper texture */
+.pageInner:before{
   content:"";
   position:absolute;
   inset:0;
-  pointer-events:none;
-  opacity:.35;
   background:
-    radial-gradient(circle at 20% 0%, rgba(0,0,0,.05), transparent 45%),
-    radial-gradient(circle at 80% 100%, rgba(0,0,0,.04), transparent 55%);
+    radial-gradient(circle at 20% 20%, rgba(0,0,0,.04), transparent 40%),
+    radial-gradient(circle at 80% 40%, rgba(0,0,0,.03), transparent 45%);
+  pointer-events:none;
+  opacity:.45;
 }
 
-/* your content */
-.pageInner{
-  padding:34px 32px;
-  height:100%;
-  overflow:auto;
+.pageInner > *{
+  position:relative;
+  z-index:1;
 }
 
-h1{ margin:0 0 10px; font-size:38px; }
-h2{ margin:0 0 12px; font-size:26px; }
-h3{ margin:10px 0 8px; font-size:14px; letter-spacing:.08em; text-transform:uppercase; color:#444; }
+h2{
+  margin:0 0 12px;
+  font-size:26px;
+}
 
-.sub{ color:#444; margin-top:0; }
-.thanks{ margin-top:18px; font-weight:600; }
+.name{
+  margin:6px 0 0;
+  font-size:42px;
+  line-height:1.05;
+}
 
-.twoCol{
+.sub{ margin:10px 0 0; color:var(--muted); }
+.muted{ color:var(--muted); }
+
+.contents{
+  margin:8px 0 0 22px;
+  line-height:1.6;
+}
+
+.grid2{
   display:grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap:14px;
-  margin-top:14px;
-  background: rgba(0,0,0,.03);
-  padding:14px;
-  border-radius:12px;
+  margin-top:16px;
 }
 
-/* Controls */
+.card{
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius:12px;
+  padding:12px 14px;
+}
+
+.cardTitle{
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+/* center spine line (makes it feel like a real book) */
+.spineLine{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:50%;
+  width:2px;
+  transform:translateX(-1px);
+  background: linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.02), rgba(0,0,0,.10));
+  pointer-events:none;
+  opacity:.7;
+}
+
+/* Buttons */
 .controls{
   display:flex;
-  justify-content:flex-end;
   gap:10px;
-  margin-top:12px;
 }
-button{
-  border:none;
+
+.controls button{
+  border:0;
   padding:10px 14px;
   border-radius:10px;
-  background:#222;
-  color:#fff;
   cursor:pointer;
-  font-weight:600;
+  font-weight:700;
 }
-#nextBtn{ background: var(--orangeDark); }
-button:disabled{ opacity:.45; cursor:not-allowed; }
 
-/* Mobile layout */
-@media (max-width: 900px){
-  .desk{ grid-template-columns: 1fr; }
-  .coverBook{ height:420px; }
-  .book{
-    width: 92vw;
-    height: 70vh;
-    max-height: 560px;
+#prevBtn{
+  background:#1f1f1f;
+  color:#fff;
+}
+
+#nextBtn{
+  background:var(--orange);
+  color:#1a1a1a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 980px){
+  .desk{
+    grid-template-columns: 1fr;
+  }
+  .coverBook{
+    height:420px;
+  }
+  .bookWrap{
+    height:520px;
   }
 }
