@@ -153,7 +153,7 @@ body{
   height:560px;
   border-radius:16px;
   background: transparent;
-  perspective: 1200px; /* a little stronger 3D */
+  perspective: 1200px;
   user-select: none;
   cursor: grab;
 }
@@ -178,7 +178,7 @@ body{
   /* Realistic flip feel */
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  transition: transform 900ms cubic-bezier(.18,.9,.18,1);
+  transition: transform 1400ms cubic-bezier(.18,.9,.18,1);
 }
 
 .page.active{
@@ -214,7 +214,7 @@ body{
   inset:0;
   pointer-events:none;
   opacity:0;
-  transition: opacity 900ms cubic-bezier(.18,.9,.18,1);
+  transition: opacity 1400ms cubic-bezier(.18,.9,.18,1);
   background: linear-gradient(90deg,
     rgba(0,0,0,.20) 0%,
     rgba(0,0,0,.08) 18%,
