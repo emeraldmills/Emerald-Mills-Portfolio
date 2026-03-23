@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flipbook Portfolio</title>
+
+  <!-- jQuery + Turn.js from CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+
+  <style>
+    :root{
+      --paper:#fffaf0;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --shadow: 0 20px 60px rgba(0,0,0,.18);
+    }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background: linear-gradient(135deg,#f3f4f6,#e5e7eb);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .wrap{
+      width:min(980px, 100%);
+      text-align:center;
+    }
+    h1,h2,h3{ margin:0 0 10px; }
+    p{ margin:0 0 10px; color:var(--muted); line-height:1.4; }
+    .book-shell{
+      display:flex;
+      justify-content:center;
+      margin: 10px auto 14px;
+    }
+    #flipbook{
+      width: 900px;
+      height: 560px;
+      box-shadow: var(--shadow);
+      border-radius: 10px;
+      overflow:hidden;
+      background: #ddd;
+    }
+    /* Responsive scaling */
+    @media (max-width: 980px){
+      #flipbook{ width: 92vw; height: 58vw; max-height: 520px; }
+    }
+    @media (max-width: 520px){
+      #flipbook{ width: 92vw; height: 120vw; max-height: 560px; }
+    }
+
+    .page{
+      background: var(--paper);
+      position: relative;
+      padding: 38px 38px 48px;
+      box-sizing:border-box;
+    }
+    .page:before{
+      /* subtle paper texture */
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(circle at 20% 0%, rgba(0,0,0,.05), transparent 45%),
+                  radial-gradient(circle at 80% 100%, rgba(0,0,0,.04), transparent 55%);
+      pointer-events:none;
+      opacity:.35;
+    }
+    .page-inner{ position:relative; z-index:1; text-align:left; }
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:10px;
+      background: rgba(255,255,255,.55);
+    }
+    .title{
+      font-size:32px;
+      letter-spacing:-0.02em;
+      margin-bottom:6px;
+    }
+    .subtitle{ font-size:14px; color:var(--muted); margin-bottom:18px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media(max-width:520px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:12px;
+      padding:12px 12px;
+      background: rgba(255,255,255,.55);
+    }
+    ul{ margin:8px 0 0 18px; color:var(--muted); }
+    li{ margin:6px 0; }
+    .page-num{
+      position:absolute;
+      bottom:14px;
+      right:18px;
+      color:rgba(0,0,0,.35);
+      font-size:12px;
+      z-index:2;
+    }
+    .controls{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    button{
+      border:none;
+      padding:10px 14px;
+      border-radius:10px;
+      background: var(--accent);
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+    }
+    button.secondary{
+      background:#111827;
+    }
+    .hint{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="book-shell">
+      <div id="flipbook" aria-label="Flipbook portfolio">
+        <!-- Page 1: Cover -->
+        <div class="page">
+          <div class="page-inner">
+            <span class="pill">Marketing Portfolio</span>
+            <h1 class="title">Your Name</h1>
+            <div class="subtitle">Eastern Michigan University • Your Year</div>
+            <div class="card">
+              <h3>Tagline</h3>
+              <p>One sentence about what you’re into, like branding, social media, or analytics.</p>
+              <p><strong>Tip:</strong> Drag the page corner to flip.</p>
+            </div>
+          </div>
+          <div class="page-num">1</div>
+        </div>
+
+        <!-- Page 2: About -->
+        <div class="page">
+          <div class="page-inner">
+            <span class="pill">About</span>
+            <h2 class="title">About Me</h2>
+            <p>Write 3–5 lines about you. Keep it real. What do you like about marketing? What are you working toward?</p>
+            <div class="grid">
+              <div class="card">
+                <h3>Interests</h3>
+                <ul>
+                  <li>Branding</li>
+                  <li>Social media content</li>
+                  <li>Consumer behavior</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Strengths</h3>
+                <ul>
+                  <li>Communication</li>
+                  <li>Organization</li>
+                  <li>Learning fast</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="page-num">2</div>
+        </div>
+
+        <!-- Page 3: Skills -->
+        <div class="page">
+          <div class="page-inner">
+            <span class="pill">Skills</span>
+            <h2 class="title">Skills & Tools</h2>
+            <div class="grid">
+              <div class="card">
+                <h3>Skills</h3>
+                <ul>
+                  <li>Content planning</li>
+                  <li>Customer communication</li>
+                  <li>Basic data analysis</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Tools</h3>
+                <ul>
+                  <li>Excel / Google Sheets</li>
+                  <li>Canva</li>
+                  <li>Social platforms</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="page-num">3</div>
+        </div>
+
+        <!-- Page 4: Experience -->
+        <div class="page">
+          <div class="page-inner">
+            <span class="pill">Experience</span>
+            <h2 class="title">Experience</h2>
+            <div class="card">
+              <h3>Role / Job / Club</h3>
+              <p>1–2 lines: what you did and what you learned.</p>
+            </div>
+            <div class="card" style="margin-top:12px;">
+              <h3>Class Project / Volunteer</h3>
+              <p>1–2 lines: what you built, improved, or presented.</p>
+            </div>
+          </div>
+          <div class="page-num">4</div>
+        </div>
+
+        <!-- Page 5: Projects -->
+        <div class="page">
+          <div class="page-inner">
+            <span class="pill">Projects</span>
+            <h2 class="title">Projects</h2>
+            <div class="card">
+              <h3>Project 1</h3>
+              <p>What it was + what result you got (even a class assignment is fine).</p>
+            </div>
+            <div class="card" style="margin-top:12px;">
+              <h3>Project 2</h3>
+              <p>One sentence: what you did. One sentence: what you learned.</p>
+            </div>
+          </div>
+          <div class="page-num">5</div>
+        </div>
+
+        <!-- Page 6: Contact -->
+        <div class="page">
+          <div class="page-inner">
+            <span class="pill">Contact</span>
+            <h2 class="title">Let’s Connect</h2>
+            <p>Email: <a href="mailto:youremail@emu.edu">youremail@emu.edu</a></p>
+            <p>LinkedIn: <a href="#" target="_blank" rel="noreferrer">your-link-here</a></p>
+            <div class="card" style="margin-top:12px;">
+              <h3>Quick note</h3>
+              <p>I’m open to learning opportunities and projects. Thanks for checking out my site.</p>
+            </div>
+          </div>
+          <div class="page-num">6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="prev" class="secondary">Back</button>
+      <button id="next">Next</button>
+    </div>
+    <div class="hint">Drag a page corner to flip. Buttons are a backup.</div>
+  </div>
+
+  <script>
+    function initFlipbook(){
+      const $fb = $("#flipbook");
+      // If already initialized, skip
+      if ($fb.data("turn")) return;
+
+      $fb.turn({
+        autoCenter: true,
+        acceleration: true,
+        gradients: true,
+        elevation: 60,
+        duration: 700
+      });
+
+      $("#prev").on("click", () => $fb.turn("previous"));
+      $("#next").on("click", () => $fb.turn("next"));
+
+      // Basic swipe support
+      let startX = null;
+      $fb.on("touchstart", (e) => {
+        const t = e.originalEvent.touches[0];
+        startX = t.clientX;
+      });
+      $fb.on("touchend", (e) => {
+        if (startX === null) return;
+        const t = e.originalEvent.changedTouches[0];
+        const dx = t.clientX - startX;
+        if (Math.abs(dx) > 50) {
+          dx < 0 ? $fb.turn("next") : $fb.turn("previous");
+        }
+        startX = null;
+      });
+    }
+
+    $(document).ready(initFlipbook);
+  </script>
+</body>
+</html>
