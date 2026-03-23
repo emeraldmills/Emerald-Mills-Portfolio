@@ -1,211 +1,80 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Emerald Mills – Portfolio</title>
-
-  <!-- Turn.js needs jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
-
   <style>
-    :root{
-      --bg1:#f6f0ff;
-      --bg2:#fdf7f0;
-      --paper:#ffffff;
-      --ink:#111827;
-      --muted:#6b7280;
-      --shadow: 0 18px 50px rgba(0,0,0,.18);
-      --accent:#7c3aed;
+    body{margin:0;font-family:system-ui;background:#f3f4f6;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:24px}
+    .wrap{width:min(1000px,100%)}
+    .book{
+      background:white;border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.18);
+      overflow:hidden;position:relative;height:600px;
     }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--ink);
-      background: radial-gradient(circle at 20% 10%, var(--bg1), transparent 55%),
-                  radial-gradient(circle at 80% 0%, var(--bg2), transparent 60%),
-                  #f3f4f6;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
-    .wrap{ width:min(1100px, 100%); }
-    .topbar{
-      display:flex; align-items:center; justify-content:space-between;
-      margin-bottom:12px;
-    }
-    .title{
-      font-weight:800; letter-spacing:-.02em;
-    }
-    .hint{ color:var(--muted); font-size:13px; }
-
-    #flipbook{
-      width: 980px;
-      height: 600px;
-      margin: 0 auto;
-      box-shadow: var(--shadow);
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--paper);
-    }
-    /* responsive sizing */
-    @media (max-width: 1020px){
-      #flipbook{ width: 92vw; height: 56vw; max-height: 560px; }
-    }
-
     .page{
-      background: var(--paper);
-      padding: 36px 34px;
-      box-sizing: border-box;
+      position:absolute;inset:0;padding:36px 34px;box-sizing:border-box;
+      transition:transform .35s ease, opacity .35s ease;
     }
-    .page h1{ margin: 0 0 8px; font-size: 34px; }
-    .page h2{ margin: 18px 0 8px; font-size: 20px; }
-    .page p{ margin: 0 0 10px; color: var(--muted); line-height: 1.5; }
-
-    .pill{
-      display:inline-block;
-      font-size:12px;
-      padding:6px 10px;
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:999px;
-      background: rgba(124,58,237,.08);
-      color:#3b0764;
-      margin-bottom:10px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    .card{
-      border:1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 12px;
-      background: rgba(255,255,255,.7);
-    }
-    ul{ margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
-
-    .controls{
-      display:flex; gap:10px; justify-content:center; align-items:center;
-      margin-top:12px;
-    }
-    button{
-      border:none; background: var(--accent); color:white;
-      padding:10px 14px; border-radius:10px; font-weight:700;
-      cursor:pointer;
-    }
-    button.secondary{
-      background: rgba(0,0,0,.08);
-      color: var(--ink);
-    }
+    .page.hidden{opacity:0;pointer-events:none;transform:translateX(30px)}
+    .pill{display:inline-block;font-size:12px;padding:6px 10px;border-radius:999px;background:#ede9fe;color:#4c1d95;margin-bottom:10px}
+    h1{margin:0 0 8px;font-size:34px}
+    p{margin:0 0 10px;color:#6b7280;line-height:1.5}
+    .controls{display:flex;gap:10px;justify-content:center;margin-top:12px}
+    button{border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .primary{background:#7c3aed;color:white}
+    .secondary{background:rgba(0,0,0,.08)}
   </style>
 </head>
-
 <body>
   <div class="wrap">
-    <div class="topbar">
-      <div class="title">Emerald Mills – Marketing Portfolio</div>
-      <div class="hint">Tip: drag the bottom corner to flip (buttons work too)</div>
-    </div>
-
-    <div id="flipbook">
-      <!-- Page 1 -->
-      <div class="page">
+    <div class="book" id="book">
+      <div class="page" data-page="0">
         <span class="pill">Cover</span>
         <h1>Emerald Mills</h1>
-        <p>Eastern Michigan University • <b>2026</b></p>
-        <h2>Tagline</h2>
+        <p>Eastern Michigan University • 2026</p>
         <p>I’m into marketing that actually makes sense—branding, social media, and analytics.</p>
-        <h2>What’s inside</h2>
-        <p>About me, skills, projects, and contact info.</p>
       </div>
 
-      <!-- Page 2 -->
-      <div class="page">
+      <div class="page hidden" data-page="1">
         <span class="pill">About</span>
         <h1>About Me</h1>
-        <p>Write 3–5 lines about you. Keep it real.</p>
-
-        <div class="grid">
-          <div class="card">
-            <h2>Interests</h2>
-            <ul>
-              <li>Branding</li>
-              <li>Social media content</li>
-              <li>Marketing strategy</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h2>Strengths</h2>
-            <ul>
-              <li>Communication</li>
-              <li>Organization</li>
-              <li>Consistency</li>
-            </ul>
-          </div>
-        </div>
+        <p>Write 3–5 lines about you (keep it real).</p>
+        <p><b>Interests:</b> Branding, social media content, strategy</p>
+        <p><b>Strengths:</b> Communication, organization, consistency</p>
       </div>
 
-      <!-- Page 3 -->
-      <div class="page">
+      <div class="page hidden" data-page="2">
         <span class="pill">Projects</span>
         <h1>Projects</h1>
-        <p>Add 2–3 projects here with a short description + what tools you used.</p>
-        <ul>
-          <li><b>Project 1:</b> …</li>
-          <li><b>Project 2:</b> …</li>
-          <li><b>Project 3:</b> …</li>
-        </ul>
+        <p><b>Project 1:</b> …</p>
+        <p><b>Project 2:</b> …</p>
+        <p><b>Project 3:</b> …</p>
       </div>
 
-      <!-- Page 4 -->
-      <div class="page">
+      <div class="page hidden" data-page="3">
         <span class="pill">Contact</span>
         <h1>Contact</h1>
-        <p>Add your email + LinkedIn.</p>
-        <ul>
-          <li>Email: yourname@email.com</li>
-          <li>LinkedIn: linkedin.com/in/yourname</li>
-        </ul>
-        <p style="margin-top:16px;">You can always add more pages later.</p>
+        <p>Email: yourname@email.com</p>
+        <p>LinkedIn: linkedin.com/in/yourname</p>
       </div>
     </div>
 
     <div class="controls">
-      <button class="secondary" id="prev">Back</button>
-      <button id="next">Next</button>
+      <button class="secondary" id="back">Back</button>
+      <button class="primary" id="next">Next</button>
     </div>
   </div>
 
   <script>
-    $(function () {
-      const $book = $("#flipbook");
+    let current = 0;
+    const pages = [...document.querySelectorAll(".page")];
 
-      // If Turn.js didn't load, show a clear message
-      if (typeof $book.turn !== "function") {
-        alert("Turn.js didn't load. Try refreshing or opening in Chrome.");
-        return;
-      }
-
-      $book.turn({
-        width: $book.width(),
-        height: $book.height(),
-        autoCenter: true
-      });
-
-      $("#next").on("click", () => $book.turn("next"));
-      $("#prev").on("click", () => $book.turn("previous"));
-
-      // keep it responsive
-      $(window).on("resize", () => {
-        $book.turn("size", $book.width(), $book.height());
-      });
-    });
+    function show(n){
+      pages.forEach((p,i)=>p.classList.toggle("hidden", i!==n));
+      current = n;
+    }
+    document.getElementById("next").onclick = ()=> show(Math.min(current+1, pages.length-1));
+    document.getElementById("back").onclick = ()=> show(Math.max(current-1, 0));
   </script>
 </body>
 </html>
