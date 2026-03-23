@@ -2,12 +2,12 @@
   --bg:#d7d4cf;
   --paper:#f5f1ea;
   --ink:#141414;
-  --muted:#6b6b6b;
-  --shadow:0 20px 60px rgba(0,0,0,.25);
+  --muted:#5f5f5f;
+  --shadow: 0 20px 60px rgba(0,0,0,.25);
+
   --orange:#e46b2c;
   --orangeDark:#b64618;
   --coverGray:#6b6460;
-  --radius:14px;
 }
 
 *{ box-sizing:border-box; }
@@ -16,11 +16,11 @@ body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: radial-gradient(circle at 20% 10%, #eee, var(--bg));
-  color:var(--ink);
+  color: var(--ink);
   min-height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   padding:24px;
 }
 
@@ -36,186 +36,201 @@ body{
 .coverBook{
   position:relative;
   height:560px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
+  border-radius:14px;
+  box-shadow: var(--shadow);
   background: var(--coverGray);
   overflow:hidden;
   display:flex;
 }
 
 .spine{
-  width:80px;
-  background: rgba(0,0,0,.18);
+  width:70px;
+  background: rgba(0,0,0,.25);
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
 .spineText{
-  color:#e8e6e4;
-  letter-spacing:.35em;
-  font-weight:700;
-  transform: rotate(-90deg);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: .35em;
+  color:#eee;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .coverFace{
   flex:1;
-  padding:22px;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+  padding:26px 24px;
+  position:relative;
 }
 
 .coverTop{
   display:flex;
-  justify-content:space-between;
   align-items:flex-start;
+  justify-content:space-between;
+  margin-bottom:18px;
 }
 
 .dotGrid{
   width:120px;
-  height:60px;
-  background-image: radial-gradient(rgba(255,255,255,.25) 1.2px, transparent 1.2px);
-  background-size:8px 8px;
+  height:70px;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.35) 1px, transparent 1px);
+  background-size: 8px 8px;
   border-radius:10px;
+  opacity:.7;
 }
 
 .miniBar{
-  width:140px;
+  width:160px;
   height:10px;
   border-radius:999px;
   background: rgba(255,255,255,.18);
 }
 
 .coverTitleBlock{
-  background: rgba(245,241,234,.95);
-  border: 3px solid rgba(0,0,0,.08);
-  border-radius:12px;
-  padding:18px 18px 14px;
-  width: fit-content;
-  max-width: 100%;
+  margin-top:12px;
+  color:#fff;
 }
 
 .smallLabel{
   font-size:12px;
-  letter-spacing:.18em;
-  opacity:.75;
+  letter-spacing:.2em;
+  opacity:.85;
 }
 
 .coverTitle{
-  margin:6px 0 0;
-  font-size:34px;
+  margin:8px 0 6px;
+  font-size:40px;
   line-height:1.05;
 }
 
 .coverMeta{
-  margin:8px 0 0;
-  color:var(--muted);
-  font-size:13px;
+  margin:0;
+  opacity:.85;
 }
 
-.coverOrange{
-  margin-top:auto;
+.coverCard{
+  margin-top:28px;
+  padding:18px 16px;
+  border-radius:12px;
+  background: rgba(255,255,255,.86);
+  color:#111;
+  width: 70%;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+
+.cardTop{
+  font-size:11px;
+  letter-spacing:.2em;
+  color:#444;
+  margin-bottom:10px;
+}
+
+.cardName{
+  font-size:26px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+.cardMeta{
+  color:#555;
+  font-size:14px;
+}
+
+.coverAccent{
+  position:absolute;
+  left:24px;
+  right:24px;
+  bottom:26px;
   background: var(--orange);
   border-radius:12px;
   padding:14px 16px;
   display:flex;
   align-items:center;
-  gap:10px;
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,.12);
+  gap:12px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.25);
 }
 
-.coverOrangeText{
-  color:#1a1a1a;
-  font-weight:700;
+.accentBar{
+  width:6px;
+  height:26px;
+  border-radius:8px;
+  background: #1a1a1a;
 }
 
-.pill{
-  width:10px;
-  height:22px;
-  border-radius:6px;
-  background: rgba(0,0,0,.55);
+.accentText{
+  color:#111;
+  font-weight:800;
 }
 
-/* RIGHT OPEN FLIPBOOK */
+/* RIGHT FLIPBOOK */
 .bookShell{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items:flex-end;
+  width:100%;
 }
 
-.tip{
-  align-self:flex-start;
-  color:var(--muted);
+.hint{
   font-size:12px;
-  margin-left:2px;
+  color: var(--muted);
+  text-align:center;
+  margin-bottom:10px;
 }
 
-/* this wrapper holds the turn.js book */
 .bookWrap{
   position:relative;
-  width: 860px;
-  max-width: 100%;
+  width: 100%;
   height: 560px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  background: #ddd;
-  overflow:hidden;
 }
 
-/* Turn.js container */
-#flipbook{
-  width:100%;
-  height:100%;
+.flipbook{
+  width: 100%;
+  height: 560px;
+  background: transparent;
+  margin:0 auto;
 }
 
-/* each page */
 .page{
   background: var(--paper);
+  border-radius: 8px;
+  overflow:hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,.12);
 }
 
-/* inside page padding */
 .pageInner{
+  padding: 34px 34px 30px;
   height:100%;
-  padding:34px 38px;
-  position:relative;
-}
-
-/* subtle paper texture */
-.pageInner:before{
-  content:"";
-  position:absolute;
-  inset:0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(0,0,0,.04), transparent 40%),
-    radial-gradient(circle at 80% 40%, rgba(0,0,0,.03), transparent 45%);
-  pointer-events:none;
-  opacity:.45;
+    radial-gradient(circle at 0% 50%, rgba(0,0,0,.06), transparent 35%),
+    radial-gradient(circle at 100% 50%, rgba(0,0,0,.04), transparent 35%),
+    linear-gradient(to bottom, rgba(0,0,0,.02), transparent 18%);
 }
 
-.pageInner > *{
-  position:relative;
-  z-index:1;
-}
-
-h2{
-  margin:0 0 12px;
+.pageTitle{
+  margin:0 0 18px;
   font-size:26px;
 }
 
-.name{
-  margin:6px 0 0;
-  font-size:42px;
+.toc{
+  margin:0;
+  padding-left:20px;
+  line-height:1.7;
+}
+
+.bigName{
+  margin:0 0 10px;
+  font-size:44px;
   line-height:1.05;
 }
 
-.sub{ margin:10px 0 0; color:var(--muted); }
-.muted{ color:var(--muted); }
+.subLine{
+  margin:0 0 10px;
+  font-weight:600;
+}
 
-.contents{
-  margin:8px 0 0 22px;
-  line-height:1.6;
+.muted{
+  color: var(--muted);
 }
 
 .grid2{
@@ -225,67 +240,114 @@ h2{
   margin-top:16px;
 }
 
+.pillBox{
+  background: rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius:12px;
+  padding:14px;
+}
+
+.pillTitle{
+  font-size:12px;
+  letter-spacing:.2em;
+  color:#444;
+  margin-bottom:10px;
+  font-weight:700;
+}
+
 .card{
-  background: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.6);
   border: 1px solid rgba(0,0,0,.08);
   border-radius:12px;
-  padding:12px 14px;
+  padding:14px;
+  margin-top:12px;
 }
 
-.cardTitle{
-  font-size:12px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:8px;
-}
-
-/* center spine line (makes it feel like a real book) */
-.spineLine{
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:50%;
-  width:2px;
-  transform:translateX(-1px);
-  background: linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.02), rgba(0,0,0,.10));
-  pointer-events:none;
-  opacity:.7;
-}
-
-/* Buttons */
+/* CONTROLS */
 .controls{
   display:flex;
+  justify-content:flex-end;
   gap:10px;
+  margin-top:12px;
 }
 
 .controls button{
   border:0;
   padding:10px 14px;
   border-radius:10px;
+  background: rgba(0,0,0,.12);
   cursor:pointer;
   font-weight:700;
 }
 
-#prevBtn{
-  background:#1f1f1f;
-  color:#fff;
+.controls button.primary{
+  background: var(--orange);
 }
 
-#nextBtn{
-  background:var(--orange);
-  color:#1a1a1a;
+/* REALISTIC CENTER SPINE LINE */
+.spineLine{
+  position:absolute;
+  top:10px;
+  bottom:10px;
+  left:50%;
+  width:18px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  z-index: 50;
+  border-radius: 999px;
+  opacity: .95;
+
+  background:
+    linear-gradient(to right,
+      transparent 0%,
+      rgba(0,0,0,.10) 38%,
+      rgba(0,0,0,.22) 50%,
+      rgba(0,0,0,.10) 62%,
+      transparent 100%
+    );
+
+  box-shadow: inset 0 0 10px rgba(255,255,255,.35);
 }
 
-/* RESPONSIVE */
+.spineLine::before,
+.spineLine::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:26px;
+  border-radius: 999px;
+  opacity:.55;
+}
+
+.spineLine::before{
+  left:-26px;
+  background: radial-gradient(circle at right,
+    rgba(0,0,0,.18),
+    transparent 65%
+  );
+}
+
+.spineLine::after{
+  right:-26px;
+  background: radial-gradient(circle at left,
+    rgba(0,0,0,.18),
+    transparent 65%
+  );
+}
+
+/* MOBILE */
 @media (max-width: 980px){
   .desk{
     grid-template-columns: 1fr;
   }
   .coverBook{
-    height:420px;
+    height: 480px;
   }
   .bookWrap{
-    height:520px;
+    height: 520px;
+  }
+  .flipbook{
+    height: 520px;
   }
 }
