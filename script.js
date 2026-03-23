@@ -16,14 +16,15 @@ function render() {
   nextBtn.disabled = (index === pages.length - 1);
 }
 
-// helper: slow flip only for button press
 function buttonFlip(step) {
-  bookEl.classList.add("buttonFlip");  // turn on slow mode
+  // Turn on slow animation only for button press
+  bookEl.classList.add("buttonFlip");
+
   index = Math.max(0, Math.min(pages.length - 1, index + step));
   render();
 
-  // remove slow mode after the animation finishes
-  setTimeout(() => bookEl.classList.remove("buttonFlip"), 2700);
+  // Remove slow mode after animation finishes
+  setTimeout(() => bookEl.classList.remove("buttonFlip"), 2900);
 }
 
 nextBtn.addEventListener("click", () => {
@@ -34,7 +35,7 @@ prevBtn.addEventListener("click", () => {
   if (index > 0) buttonFlip(-1);
 });
 
-/* Drag stays the same speed (no buttonFlip class) */
+/* Mouse / Trackpad drag flipping (stays normal speed) */
 let dragging = false;
 let startX = 0;
 let moved = false;
