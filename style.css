@@ -175,9 +175,10 @@ body{
   opacity: 0;
   pointer-events: none;
 
-  /* Flip feel */
   backface-visibility: hidden;
   transform-style: preserve-3d;
+
+  /* Default speed (drag / normal) */
   transition: transform 1400ms cubic-bezier(.18,.9,.18,1);
 }
 
@@ -195,16 +196,32 @@ body{
   z-index: 2;
 }
 
-/* Paper texture */
+/* Paper texture + center crease */
 .page::before{
   content:"";
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(circle at 20% 0%, rgba(0,0,0,.05), transparent 45%),
-    radial-gradient(circle at 80% 100%, rgba(0,0,0,.04), transparent 55%);
   pointer-events:none;
   opacity:.35;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(0,0,0,.05), transparent 45%),
+    radial-gradient(circle at 80% 100%, rgba(0,0,0,.04), transparent 55%),
+
+    /* center crease line */
+    linear-gradient(90deg,
+      transparent 49.6%,
+      rgba(0,0,0,.18) 50%,
+      transparent 50.4%
+    ),
+
+    /* soft shadow near the crease */
+    linear-gradient(90deg,
+      transparent 47%,
+      rgba(0,0,0,.05) 49.5%,
+      transparent 52%,
+      rgba(0,0,0,.04) 53%,
+      transparent 100%
+    );
 }
 
 /* Base shadow */
@@ -224,17 +241,15 @@ body{
     rgba(0,0,0,.20) 100%
   );
 }
-.page.flipped::after{
-  opacity:1;
-}
+.page.flipped::after{ opacity:1; }
 
-/* Slower ONLY when clicking buttons */
-.book.buttonFlip .page{
-  transition-duration: 2800ms;
-}
-.book.buttonFlip .page::after{
-  transition-duration: 2800ms;
-}
+/* Slow ONLY for NEXT */
+.book.buttonNext .page{ transition-duration: 2600ms; }
+.book.buttonNext .page::after{ transition-duration: 2600ms; }
+
+/* Faster for BACK */
+.book.buttonBack .page{ transition-duration: 1200ms; }
+.book.buttonBack .page::after{ transition-duration: 1200ms; }
 
 /* Inside page content */
 .pageInner{
@@ -280,7 +295,7 @@ button{
 #nextBtn{ background: var(--orangeDark); }
 button:disabled{ opacity:.45; cursor:not-allowed; }
 
-/* ----- NEW: Page bend illusion while turning ----- */
+/* ----- Bend effect overlay (visible on both Next + Back) ----- */
 .bendFX{
   position:absolute;
   inset:0;
@@ -290,10 +305,10 @@ button:disabled{ opacity:.45; cursor:not-allowed; }
 
 .page.turning .bendFX{
   opacity:1;
-  animation: bendGlow 2800ms cubic-bezier(.18,.9,.18,1) both;
+  animation: bendGlow 1200ms cubic-bezier(.18,.9,.18,1) both;
+  mix-blend-mode: multiply;
 }
 
-/* A subtle “bend” glow + curved edge shadow */
 @keyframes bendGlow{
   0%{
     opacity:0;
@@ -301,30 +316,30 @@ button:disabled{ opacity:.45; cursor:not-allowed; }
       radial-gradient(120px 520px at 0% 50%, rgba(0,0,0,0), rgba(0,0,0,0) 60%),
       linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0));
   }
-  35%{
+  40%{
     opacity:1;
     background:
-      radial-gradient(150px 520px at 8% 50%, rgba(0,0,0,.22), rgba(0,0,0,0) 62%),
+      radial-gradient(170px 520px at 10% 50%, rgba(0,0,0,.28), rgba(0,0,0,0) 65%),
       linear-gradient(90deg,
         rgba(0,0,0,.22) 0%,
-        rgba(0,0,0,.10) 12%,
-        transparent 40%,
-        transparent 60%,
-        rgba(0,0,0,.10) 88%,
+        rgba(0,0,0,.10) 16%,
+        transparent 45%,
+        transparent 55%,
+        rgba(0,0,0,.10) 84%,
         rgba(0,0,0,.22) 100%
       );
   }
-  70%{
+  80%{
     opacity:1;
     background:
-      radial-gradient(160px 520px at 12% 50%, rgba(0,0,0,.18), rgba(0,0,0,0) 65%),
+      radial-gradient(180px 520px at 14% 50%, rgba(0,0,0,.22), rgba(0,0,0,0) 68%),
       linear-gradient(90deg,
-        rgba(0,0,0,.16) 0%,
-        rgba(0,0,0,.08) 12%,
-        transparent 45%,
-        transparent 55%,
-        rgba(0,0,0,.08) 88%,
-        rgba(0,0,0,.16) 100%
+        rgba(0,0,0,.18) 0%,
+        rgba(0,0,0,.08) 16%,
+        transparent 48%,
+        transparent 52%,
+        rgba(0,0,0,.08) 84%,
+        rgba(0,0,0,.18) 100%
       );
   }
   100%{
