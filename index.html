@@ -1,97 +1,61 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emerald Mills Portfolio</title>
-
-  <!-- Libraries -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
-
-  <link rel="stylesheet" href="style.css" />
-</head>
-
 <body>
   <div class="desk">
-    <!-- Left: Closed cover -->
-    <div class="cover">
-      <div class="spine">Portfolio</div>
-      <div class="cover-front">
-        <div class="cover-card">
-          <div class="small">Marketing Portfolio</div>
-          <div class="title">Emerald Mills</div>
-          <div class="line"></div>
-          <div class="sub">Eastern Michigan University • 2026</div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Right: Open flipbook -->
-    <div class="book-wrap">
+    <!-- LEFT: Closed book cover -->
+    <section class="cover-book" aria-label="Portfolio cover">
+      <div class="cover-spine">Portfolio</div>
+      <div class="cover-front">
+        <div class="cover-badge">Marketing Portfolio</div>
+        <h1 class="cover-name">Emerald Mills</h1>
+        <p class="cover-sub">Eastern Michigan University • 2026</p>
+      </div>
+    </section>
+
+    <!-- RIGHT: Open flipbook -->
+    <section class="open-book">
       <div id="flipbook">
         <div class="page">
           <h2>About Me</h2>
-          <p>Hi! I’m Emerald. I’m interested in marketing, branding, and business.</p>
-          <p><b>Strengths:</b> communication, organization, consistency.</p>
+          <p>Write 3–5 lines about you…</p>
         </div>
-
         <div class="page">
-          <h2>Project 1</h2>
-          <p>Put your first project here.</p>
-          <ul>
-            <li>Goal</li>
-            <li>What you did</li>
-            <li>Result</li>
-          </ul>
+          <h2>Projects</h2>
+          <p>Project 1…</p>
         </div>
-
-        <div class="page">
-          <h2>Project 2</h2>
-          <p>Put your second project here.</p>
-        </div>
-
         <div class="page">
           <h2>Resume</h2>
-          <p>Add a link to your resume or paste a short version.</p>
+          <p>Put your resume highlights…</p>
         </div>
-
         <div class="page">
           <h2>Contact</h2>
-          <p>Email: youremail@…</p>
-          <p>LinkedIn: …</p>
-        </div>
-
-        <div class="page">
-          <h2>Thank you!</h2>
-          <p>That’s my portfolio 😊</p>
+          <p>Email / LinkedIn…</p>
         </div>
       </div>
 
       <div class="controls">
-        <button id="prev">Back</button>
-        <button id="next">Next</button>
+        <button id="prevBtn" type="button">Back</button>
+        <button id="nextBtn" type="button">Next</button>
       </div>
-    </div>
+    </section>
+
   </div>
 
+  <!-- scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+
   <script>
-    // Make the flipbook work
     $("#flipbook").turn({
-      width: 920,
+      width: 900,
       height: 560,
-      autoCenter: true,
-      gradients: true,
-      elevation: 50
+      autoCenter: true
     });
 
-    $("#next").on("click", function () {
+    document.getElementById("nextBtn").addEventListener("click", () => {
       $("#flipbook").turn("next");
     });
-
-    $("#prev").on("click", function () {
+    document.getElementById("prevBtn").addEventListener("click", () => {
       $("#flipbook").turn("previous");
     });
   </script>
 </body>
-</html>
