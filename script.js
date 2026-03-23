@@ -16,15 +16,26 @@ function render() {
   nextBtn.disabled = (index === pages.length - 1);
 }
 
+function markTurning(duration = 900) {
+  const p = pages[index];
+  p.classList.add("turning");
+  setTimeout(() => p.classList.remove("turning"), duration);
+}
+
 function buttonFlip(step) {
-  // Turn on slow animation only for button press
+  // Slow animation only for button press + bend effect
+  const turningPage = pages[index];
+  turningPage.classList.add("turning");
+
   bookEl.classList.add("buttonFlip");
 
   index = Math.max(0, Math.min(pages.length - 1, index + step));
   render();
 
-  // Remove slow mode after animation finishes
-  setTimeout(() => bookEl.classList.remove("buttonFlip"), 2900);
+  setTimeout(() => {
+    turningPage.classList.remove("turning");
+    bookEl.classList.remove("buttonFlip");
+  }, 2900);
 }
 
 nextBtn.addEventListener("click", () => {
@@ -35,7 +46,7 @@ prevBtn.addEventListener("click", () => {
   if (index > 0) buttonFlip(-1);
 });
 
-/* Mouse / Trackpad drag flipping (stays normal speed) */
+/* Mouse / Trackpad drag flipping (normal speed + quick bend) */
 let dragging = false;
 let startX = 0;
 let moved = false;
@@ -60,9 +71,11 @@ window.addEventListener("mouseup", (e) => {
   if (!moved) return;
 
   if (dx < -60 && index < pages.length - 1) {
+    markTurning(900);
     index++;
     render();
   } else if (dx > 60 && index > 0) {
+    markTurning(900);
     index--;
     render();
   }
@@ -79,9 +92,11 @@ bookEl.addEventListener("touchend", (e) => {
   const dx = t.clientX - startX;
 
   if (dx < -60 && index < pages.length - 1) {
+    markTurning(900);
     index++;
     render();
   } else if (dx > 60 && index > 0) {
+    markTurning(900);
     index--;
     render();
   }
