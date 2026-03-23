@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flipbook Portfolio</title>
+  <title>Emerald Mills • Finance Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 
-  <!-- jQuery + Turn.js (reliable CDN) -->
+  <!-- jQuery + Turn.js (flip effect + page curl shading) -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
-
-  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <main class="desk">
-    <!-- LEFT CLOSED BOOK (decorative cover) -->
-    <section class="coverBook" aria-label="Portfolio cover">
+    <!-- LEFT: closed book cover -->
+    <section class="coverBook" aria-label="Closed portfolio book">
       <div class="spine">
         <span class="spineText">PORTFOLIO</span>
       </div>
@@ -26,37 +25,38 @@
           <div class="miniBar"></div>
         </div>
 
-        <div class="coverTitleBlock">
-          <div class="smallLabel">FINANCE PORTFOLIO</div>
-          <h1 class="coverTitle">Emerald Mills</h1>
-          <p class="coverMeta">Eastern Michigan University • 2026</p>
-        </div>
-
         <div class="coverCard">
-          <div class="cardTop">FINANCE PORTFOLIO</div>
-          <div class="cardName">Emerald Mills</div>
-          <div class="cardMeta">EMU • 2026</div>
+          <div class="smallCap">FINANCE PORTFOLIO</div>
+          <div class="name">Emerald Mills</div>
+          <div class="meta">Eastern Michigan University • 2026</div>
         </div>
 
-        <div class="coverAccent">
-          <div class="accentBar"></div>
-          <div class="accentText">Selective Work &amp; Projects</div>
+        <div class="coverBand">
+          <div class="bandDot"></div>
+          <div class="bandText">Selective Work &amp; Projects</div>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT OPEN FLIPBOOK -->
-    <section class="bookShell" aria-label="Flipbook pages">
-      <div class="hint">Tip: drag the page corner to flip (buttons work too)</div>
+    <!-- RIGHT: open book that flips -->
+    <section class="openArea" aria-label="Open flipbook">
+      <div class="hint">Tip: drag the page corner to flip (buttons work too).</div>
+
+      <div class="controls">
+        <button id="prevBtn" type="button">Back</button>
+        <button id="nextBtn" type="button">Next</button>
+      </div>
 
       <div class="bookWrap">
-        <!-- This is the actual flipbook -->
+        <!-- center gutter shadow line -->
+        <div class="gutter" aria-hidden="true"></div>
+
         <div id="flipbook" class="flipbook">
-          <!-- PAGE 1 -->
+          <!-- Page 1 (RIGHT page will show first in double mode) -->
           <div class="page">
             <div class="pageInner">
-              <h2 class="pageTitle">Contents</h2>
-              <ol class="toc">
+              <h2>Contents</h2>
+              <ol class="contents">
                 <li>Intro</li>
                 <li>About</li>
                 <li>Projects</li>
@@ -64,36 +64,35 @@
                 <li>Contact</li>
                 <li>Thank You</li>
               </ol>
+              <p class="tiny">Drag corners to flip.</p>
             </div>
           </div>
 
-          <!-- PAGE 2 -->
+          <!-- Page 2 -->
           <div class="page">
             <div class="pageInner">
-              <h1 class="bigName">Emerald Mills</h1>
-              <p class="subLine">Finance Portfolio • EMU • 2026</p>
-              <p class="muted">(Intro page — quick summary goes here later.)</p>
+              <h1>Emerald Mills</h1>
+              <p class="sub">Finance Portfolio • EMU • 2026</p>
+              <p class="muted">(This is your intro page. You’ll add your real content later.)</p>
             </div>
           </div>
 
-          <!-- PAGE 3 -->
+          <!-- Page 3 -->
           <div class="page">
             <div class="pageInner">
-              <h2 class="pageTitle">About</h2>
-              <p class="muted">Write 3–5 lines about you.</p>
-
-              <div class="grid2">
-                <div class="pillBox">
-                  <div class="pillTitle">INTERESTS</div>
+              <h2>About Me</h2>
+              <p class="muted">Write 3–5 lines about you. Keep it real.</p>
+              <div class="twoCol">
+                <div class="box">
+                  <h3>Interests</h3>
                   <ul>
                     <li>Investing</li>
                     <li>Wealth management</li>
                     <li>Financial planning</li>
                   </ul>
                 </div>
-
-                <div class="pillBox">
-                  <div class="pillTitle">STRENGTHS</div>
+                <div class="box">
+                  <h3>Strengths</h3>
                   <ul>
                     <li>Communication</li>
                     <li>Organization</li>
@@ -104,70 +103,56 @@
             </div>
           </div>
 
-          <!-- PAGE 4 -->
+          <!-- Page 4 -->
           <div class="page">
             <div class="pageInner">
-              <h2 class="pageTitle">Projects</h2>
+              <h2>Projects</h2>
               <p class="muted">Add your projects here later.</p>
-
-              <div class="card">
-                <h3>Project 1</h3>
-                <p>Short description…</p>
-              </div>
-              <div class="card">
-                <h3>Project 2</h3>
-                <p>Short description…</p>
+              <div class="box">
+                <strong>Project 1:</strong> (title) — 1–2 lines about what you did.
               </div>
             </div>
           </div>
 
-          <!-- PAGE 5 -->
+          <!-- Page 5 -->
           <div class="page">
             <div class="pageInner">
-              <h2 class="pageTitle">Resume</h2>
+              <h2>Resume</h2>
               <p class="muted">Paste highlights or link a PDF later.</p>
-
-              <div class="card">
-                <h3>Experience</h3>
-                <p>• Bullet 1<br>• Bullet 2<br>• Bullet 3</p>
+              <div class="box">
+                <strong>Skills:</strong> Excel • PowerPoint • Research • Communication
               </div>
             </div>
           </div>
 
-          <!-- PAGE 6 -->
+          <!-- Page 6 -->
           <div class="page">
             <div class="pageInner">
-              <h2 class="pageTitle">Contact</h2>
-              <p class="muted">Email / LinkedIn…</p>
-
-              <div class="card">
-                <p><strong>Email:</strong> yourname@email.com</p>
-                <p><strong>LinkedIn:</strong> linkedin.com/in/yourname</p>
+              <h2>Contact</h2>
+              <p class="muted">Email / LinkedIn / (whatever you want to share).</p>
+              <div class="box">
+                Email: youremail@example.com<br />
+                LinkedIn: linkedin.com/in/yourname
               </div>
             </div>
           </div>
 
-          <!-- PAGE 7 -->
+          <!-- Page 7 -->
           <div class="page">
             <div class="pageInner">
-              <h2 class="pageTitle">Thank You</h2>
-              <p class="muted">A short closing line.</p>
+              <h2>Thank You</h2>
+              <p class="muted">Short closing line.</p>
             </div>
           </div>
 
-          <!-- PAGE 8 (blank back page so it closes clean) -->
+          <!-- Page 8 (blank back cover page) -->
           <div class="page">
-            <div class="pageInner"></div>
+            <div class="pageInner">
+              <p class="muted">—</p>
+            </div>
           </div>
+
         </div>
-
-        <!-- REALISTIC SPINE (middle line) -->
-        <div class="spineLine" aria-hidden="true"></div>
-      </div>
-
-      <div class="controls">
-        <button id="prevBtn" type="button">Back</button>
-        <button id="nextBtn" type="button" class="primary">Next</button>
       </div>
     </section>
   </main>
