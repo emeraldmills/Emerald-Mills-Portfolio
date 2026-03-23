@@ -6,7 +6,6 @@ function render() {
     p.classList.toggle("active", i === index);
     p.classList.toggle("flipped", i < index);
 
-    // Keep stacking consistent
     p.style.zIndex = i === index ? 10 : (i < index ? 2 : 1);
   });
 
@@ -24,7 +23,7 @@ document.getElementById("prevBtn").addEventListener("click", () => {
   render();
 });
 
-/* Mouse / Trackpad drag flipping (does NOT remove buttons) */
+/* Mouse / Trackpad drag flipping */
 const bookEl = document.getElementById("book");
 let dragging = false;
 let startX = 0;
@@ -49,7 +48,6 @@ window.addEventListener("mouseup", (e) => {
   const dx = e.clientX - startX;
   if (!moved) return;
 
-  // Drag left = next, drag right = back
   if (dx < -60 && index < pages.length - 1) {
     index++;
     render();
@@ -59,7 +57,7 @@ window.addEventListener("mouseup", (e) => {
   }
 });
 
-/* Touch support (phone/tablet) */
+/* Touch support */
 bookEl.addEventListener("touchstart", (e) => {
   const t = e.touches[0];
   startX = t.clientX;
