@@ -16,26 +16,25 @@ function render() {
   nextBtn.disabled = (index === pages.length - 1);
 }
 
-function markTurning(duration = 900) {
-  const p = pages[index];
-  p.classList.add("turning");
-  setTimeout(() => p.classList.remove("turning"), duration);
-}
-
 function buttonFlip(step) {
-  // Slow animation only for button press + bend effect
-  const turningPage = pages[index];
-  turningPage.classList.add("turning");
+  const goingNext = step === 1;
 
-  bookEl.classList.add("buttonFlip");
+  // Pick the page that visually “moves”
+  const turningPage = goingNext ? pages[index] : pages[index - 1];
+  if (turningPage) turningPage.classList.add("turning");
+
+  // Speed class
+  bookEl.classList.remove("buttonNext", "buttonBack");
+  bookEl.classList.add(goingNext ? "buttonNext" : "buttonBack");
 
   index = Math.max(0, Math.min(pages.length - 1, index + step));
   render();
 
+  const ms = goingNext ? 2600 : 1200;
   setTimeout(() => {
-    turningPage.classList.remove("turning");
-    bookEl.classList.remove("buttonFlip");
-  }, 2900);
+    if (turningPage) turningPage.classList.remove("turning");
+    bookEl.classList.remove("buttonNext", "buttonBack");
+  }, ms + 50);
 }
 
 nextBtn.addEventListener("click", () => {
@@ -46,7 +45,14 @@ prevBtn.addEventListener("click", () => {
   if (index > 0) buttonFlip(-1);
 });
 
-/* Mouse / Trackpad drag flipping (normal speed + quick bend) */
+/* Quick bend for drag flips */
+function markTurning(duration = 900){
+  const p = pages[index];
+  p.classList.add("turning");
+  setTimeout(() => p.classList.remove("turning"), duration);
+}
+
+/* Mouse / Trackpad drag flipping (normal speed) */
 let dragging = false;
 let startX = 0;
 let moved = false;
