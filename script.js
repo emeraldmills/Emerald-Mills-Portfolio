@@ -1,53 +1,35 @@
-// StPageFlip: realistic single-page turns + bending/curl illusion
-document.addEventListener("DOMContentLoaded", () => {
-  const bookEl = document.getElementById("book");
-  const pagesEl = document.getElementById("pages");
+// Flip speed (ms). Bigger = slower.
+const FLIP_DURATION = 900; // try 700–1200
 
-  const nextBtn = document.getElementById("nextBtn");
-  const prevBtn = document.getElementById("prevBtn");
+$(function () {
+  const $flip = $("#flipbook");
 
-  // Create pageFlip instance
-  const pageFlip = new St.PageFlip(bookEl, {
-    width: 380,          // single page width
-    height: 560,         // page height
-    size: "stretch",
-    minWidth: 315,
-    maxWidth: 500,
-    minHeight: 420,
-    maxHeight: 760,
-
-    showCover: false,    // book style, not a cover book
-    mobileScrollSupport: false,
-
-    // Realistic feel
-    flippingTime: 1100,  // flip speed (ms)
-    useMouseEvents: true,
-    swipeDistance: 30,
-    maxShadowOpacity: 0.35,
+  // Build the flipbook
+  $flip.turn({
+    width: $flip.parent().width(),
+    height: $flip.parent().height(),
+    autoCenter: true,
+    display: "double",     // shows 2 pages like a real book
+    duration: FLIP_DURATION,
+    acceleration: true,
+    gradients: true,
+    elevation: 50          // makes the curl feel more “real”
   });
 
-  // Load HTML pages from hidden container
-  pageFlip.loadFromHTML(pagesEl.querySelectorAll(".pf-page"));
-
-  function updateButtons() {
-    const current = pageFlip.getCurrentPageIndex();
-    const total = pageFlip.getPageCount();
-
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current >= total - 1;
-  }
-
-  updateButtons();
-
   // Buttons
-  nextBtn.addEventListener("click", () => pageFlip.flipNext());
-  prevBtn.addEventListener("click", () => pageFlip.flipPrev());
+  $("#nextBtn").on("click", function () {
+    $flip.turn("next");
+  });
 
-  // Update button state after flip
-  pageFlip.on("flip", updateButtons);
+  $("#prevBtn").on("click", function () {
+    $flip.turn("previous");
+  });
 
-  // Resize on window resize so it stays clean
-  window.addEventListener("resize", () => {
-    pageFlip.update();
+  // Resize handling (keeps it looking right if window changes)
+  $(window).on("resize", function () {
+    const w = $flip.parent().width();
+    const h = $flip.parent().height();
+    $flip.turn("size", w, h);
+    $flip.turn("center");
   });
 });
