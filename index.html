@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Finance Portfolio | Emerald Mills</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emerald Mills • Finance Portfolio</title>
 
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Turn.js needs jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
 </head>
 
 <body>
-  <div class="desk">
-
-    <!-- LEFT CLOSED BOOK (unchanged look) -->
+  <main class="desk">
+    <!-- LEFT: closed book (visual only) -->
     <section class="coverBook" aria-label="Portfolio cover">
-      <div class="spine"><span>PORTFOLIO</span></div>
+      <div class="spine">
+        <span class="spineText">PORTFOLIO</span>
+      </div>
 
       <div class="coverFace">
         <div class="coverTop">
@@ -21,97 +26,136 @@
           <div class="miniBar"></div>
         </div>
 
-        <div class="coverCard">
+        <div class="coverTitleBlock">
           <div class="smallLabel">FINANCE PORTFOLIO</div>
-          <div class="name">Emerald Mills</div>
-          <div class="meta">Eastern Michigan University • 2026</div>
+          <h1 class="coverTitle">Emerald Mills</h1>
+          <p class="coverMeta">Eastern Michigan University • 2026</p>
         </div>
 
-        <div class="coverBand">
+        <div class="coverOrange">
           <span class="pill"></span>
-          <span class="bandText">Selective Work & Projects</span>
+          <span class="coverOrangeText">Selective Work & Projects</span>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT OPEN BOOK (StPageFlip) -->
-    <section class="bookShell" aria-label="Flipbook">
-      <div class="hint">Tip: drag the page corner to flip (buttons work too)</div>
+    <!-- RIGHT: the flipbook -->
+    <section class="bookShell" aria-label="Flip book">
+      <div class="tip">Tip: drag a page corner to flip (buttons work too)</div>
 
-      <!-- This is where PageFlip renders -->
-      <div id="book" class="book"></div>
-
-      <!-- Your pages live in this hidden container -->
-      <div id="pages" class="pages" aria-hidden="true">
-        <div class="pf-page">
-          <div class="pageInner">
-            <h2>Contents</h2>
-            <ol>
-              <li>Intro</li>
-              <li>About</li>
-              <li>Projects</li>
-              <li>Resume</li>
-              <li>Contact</li>
-              <li>Thank You</li>
-            </ol>
+      <div class="bookWrap">
+        <div id="flipbook">
+          <!-- Page 1 (Right side when book opens) -->
+          <div class="page">
+            <div class="pageInner">
+              <h2>Contents</h2>
+              <ol class="contents">
+                <li>Intro</li>
+                <li>About</li>
+                <li>Projects</li>
+                <li>Resume</li>
+                <li>Contact</li>
+                <li>Thank You</li>
+              </ol>
+            </div>
           </div>
-        </div>
 
-        <div class="pf-page">
-          <div class="pageInner">
-            <h1>Emerald Mills</h1>
-            <p class="sub">Finance Portfolio • EMU • 2026</p>
-            <p>(Intro page — quick summary goes here later.)</p>
+          <!-- Page 2 -->
+          <div class="page">
+            <div class="pageInner">
+              <h2>Intro</h2>
+              <h1 class="name">Emerald Mills</h1>
+              <p class="sub">Finance Portfolio • EMU • 2026</p>
+              <p class="muted">(Quick intro goes here later.)</p>
+            </div>
           </div>
-        </div>
 
-        <div class="pf-page">
-          <div class="pageInner">
-            <h2>About</h2>
-            <p>Write 3–5 lines about you.</p>
+          <!-- Page 3 -->
+          <div class="page">
+            <div class="pageInner">
+              <h2>About</h2>
+              <p class="muted">Write 3–5 lines about you (keep it real).</p>
 
-            <div class="twoCol">
-              <div>
-                <h3>Interests</h3>
-                <ul>
-                  <li>Investing</li>
-                  <li>Wealth management</li>
-                  <li>Financial planning</li>
-                </ul>
+              <div class="grid2">
+                <div class="card">
+                  <div class="cardTitle">Interests</div>
+                  <ul>
+                    <li>Investing</li>
+                    <li>Wealth management</li>
+                    <li>Financial planning</li>
+                  </ul>
+                </div>
+
+                <div class="card">
+                  <div class="cardTitle">Strengths</div>
+                  <ul>
+                    <li>Communication</li>
+                    <li>Organization</li>
+                    <li>Consistency</li>
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h3>Strengths</h3>
+            </div>
+          </div>
+
+          <!-- Page 4 -->
+          <div class="page">
+            <div class="pageInner">
+              <h2>Projects</h2>
+              <p class="muted">Add your projects here later.</p>
+              <div class="card">
+                <div class="cardTitle">Project 1</div>
+                <p>Short description + what you learned + tools used.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Page 5 -->
+          <div class="page">
+            <div class="pageInner">
+              <h2>Resume</h2>
+              <p class="muted">Paste highlights or link a PDF later.</p>
+              <div class="card">
+                <div class="cardTitle">Highlights</div>
                 <ul>
-                  <li>Communication</li>
-                  <li>Organization</li>
-                  <li>Consistency</li>
+                  <li>Excel + pivot tables</li>
+                  <li>Customer service / business experience</li>
+                  <li>Finance coursework in progress</li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="pf-page">
-          <div class="pageInner">
-            <h2>Projects</h2>
-            <p>Add your projects here later.</p>
+          <!-- Page 6 -->
+          <div class="page">
+            <div class="pageInner">
+              <h2>Contact</h2>
+              <p class="muted">Put your email + LinkedIn here.</p>
+              <div class="card">
+                <p><b>Email:</b> yourname@email.com</p>
+                <p><b>LinkedIn:</b> linkedin.com/in/yourhandle</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Page 7 -->
+          <div class="page">
+            <div class="pageInner">
+              <h2>Thank You</h2>
+              <p class="muted">Quick closing message.</p>
+            </div>
+          </div>
+
+          <!-- Page 8 (blank back page so it closes nicely) -->
+          <div class="page">
+            <div class="pageInner">
+              <p class="muted">—</p>
+            </div>
           </div>
         </div>
 
-        <div class="pf-page">
-          <div class="pageInner">
-            <h2>Resume</h2>
-            <p>Paste highlights or link a PDF later.</p>
-          </div>
-        </div>
-
-        <div class="pf-page">
-          <div class="pageInner">
-            <h2>Contact</h2>
-            <p>Email / LinkedIn / whatever you want to share.</p>
-            <p class="thanks">Thank you for viewing.</p>
-          </div>
-        </div>
+        <!-- spine line overlay -->
+        <div class="spineLine" aria-hidden="true"></div>
       </div>
 
       <div class="controls">
@@ -119,11 +163,8 @@
         <button id="nextBtn" type="button">Next</button>
       </div>
     </section>
+  </main>
 
-  </div>
-
-  <!-- StPageFlip (CDN) -->
-  <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
