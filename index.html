@@ -1,80 +1,97 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Emerald Mills – Portfolio</title>
-  <style>
-    body{margin:0;font-family:system-ui;background:#f3f4f6;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:24px}
-    .wrap{width:min(1000px,100%)}
-    .book{
-      background:white;border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.18);
-      overflow:hidden;position:relative;height:600px;
-    }
-    .page{
-      position:absolute;inset:0;padding:36px 34px;box-sizing:border-box;
-      transition:transform .35s ease, opacity .35s ease;
-    }
-    .page.hidden{opacity:0;pointer-events:none;transform:translateX(30px)}
-    .pill{display:inline-block;font-size:12px;padding:6px 10px;border-radius:999px;background:#ede9fe;color:#4c1d95;margin-bottom:10px}
-    h1{margin:0 0 8px;font-size:34px}
-    p{margin:0 0 10px;color:#6b7280;line-height:1.5}
-    .controls{display:flex;gap:10px;justify-content:center;margin-top:12px}
-    button{border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
-    .primary{background:#7c3aed;color:white}
-    .secondary{background:rgba(0,0,0,.08)}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emerald Mills Portfolio</title>
+
+  <!-- Libraries -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="book" id="book">
-      <div class="page" data-page="0">
-        <span class="pill">Cover</span>
-        <h1>Emerald Mills</h1>
-        <p>Eastern Michigan University • 2026</p>
-        <p>I’m into marketing that actually makes sense—branding, social media, and analytics.</p>
-      </div>
-
-      <div class="page hidden" data-page="1">
-        <span class="pill">About</span>
-        <h1>About Me</h1>
-        <p>Write 3–5 lines about you (keep it real).</p>
-        <p><b>Interests:</b> Branding, social media content, strategy</p>
-        <p><b>Strengths:</b> Communication, organization, consistency</p>
-      </div>
-
-      <div class="page hidden" data-page="2">
-        <span class="pill">Projects</span>
-        <h1>Projects</h1>
-        <p><b>Project 1:</b> …</p>
-        <p><b>Project 2:</b> …</p>
-        <p><b>Project 3:</b> …</p>
-      </div>
-
-      <div class="page hidden" data-page="3">
-        <span class="pill">Contact</span>
-        <h1>Contact</h1>
-        <p>Email: yourname@email.com</p>
-        <p>LinkedIn: linkedin.com/in/yourname</p>
+  <div class="desk">
+    <!-- Left: Closed cover -->
+    <div class="cover">
+      <div class="spine">Portfolio</div>
+      <div class="cover-front">
+        <div class="cover-card">
+          <div class="small">Marketing Portfolio</div>
+          <div class="title">Emerald Mills</div>
+          <div class="line"></div>
+          <div class="sub">Eastern Michigan University • 2026</div>
+        </div>
       </div>
     </div>
 
-    <div class="controls">
-      <button class="secondary" id="back">Back</button>
-      <button class="primary" id="next">Next</button>
+    <!-- Right: Open flipbook -->
+    <div class="book-wrap">
+      <div id="flipbook">
+        <div class="page">
+          <h2>About Me</h2>
+          <p>Hi! I’m Emerald. I’m interested in marketing, branding, and business.</p>
+          <p><b>Strengths:</b> communication, organization, consistency.</p>
+        </div>
+
+        <div class="page">
+          <h2>Project 1</h2>
+          <p>Put your first project here.</p>
+          <ul>
+            <li>Goal</li>
+            <li>What you did</li>
+            <li>Result</li>
+          </ul>
+        </div>
+
+        <div class="page">
+          <h2>Project 2</h2>
+          <p>Put your second project here.</p>
+        </div>
+
+        <div class="page">
+          <h2>Resume</h2>
+          <p>Add a link to your resume or paste a short version.</p>
+        </div>
+
+        <div class="page">
+          <h2>Contact</h2>
+          <p>Email: youremail@…</p>
+          <p>LinkedIn: …</p>
+        </div>
+
+        <div class="page">
+          <h2>Thank you!</h2>
+          <p>That’s my portfolio 😊</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="prev">Back</button>
+        <button id="next">Next</button>
+      </div>
     </div>
   </div>
 
   <script>
-    let current = 0;
-    const pages = [...document.querySelectorAll(".page")];
+    // Make the flipbook work
+    $("#flipbook").turn({
+      width: 920,
+      height: 560,
+      autoCenter: true,
+      gradients: true,
+      elevation: 50
+    });
 
-    function show(n){
-      pages.forEach((p,i)=>p.classList.toggle("hidden", i!==n));
-      current = n;
-    }
-    document.getElementById("next").onclick = ()=> show(Math.min(current+1, pages.length-1));
-    document.getElementById("back").onclick = ()=> show(Math.max(current-1, 0));
+    $("#next").on("click", function () {
+      $("#flipbook").turn("next");
+    });
+
+    $("#prev").on("click", function () {
+      $("#flipbook").turn("previous");
+    });
   </script>
 </body>
 </html>
