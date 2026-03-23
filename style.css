@@ -178,6 +178,8 @@ body{
   /* Realistic flip feel */
   backface-visibility: hidden;
   transform-style: preserve-3d;
+
+  /* Default speed (drag/normal) */
   transition: transform 1400ms cubic-bezier(.18,.9,.18,1);
 }
 
@@ -207,7 +209,7 @@ body{
   opacity:.35;
 }
 
-/* “paper bend” shadow during flips */
+/* “paper bend” shadow */
 .page::after{
   content:"";
   position:absolute;
@@ -226,6 +228,14 @@ body{
 }
 .page.flipped::after{
   opacity:1;
+}
+
+/* Slower ONLY when clicking buttons */
+.book.buttonFlip .page{
+  transition-duration: 2800ms;
+}
+.book.buttonFlip .page::after{
+  transition-duration: 2800ms;
 }
 
 /* Inside page content */
