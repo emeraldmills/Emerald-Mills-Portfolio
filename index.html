@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emerald Mills • Finance Portfolio</title>
+  <title>Flipbook Portfolio</title>
 
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Turn.js needs jQuery -->
+  <!-- jQuery + Turn.js (reliable CDN) -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <main class="desk">
-    <!-- LEFT: closed book (visual only) -->
+    <!-- LEFT CLOSED BOOK (decorative cover) -->
     <section class="coverBook" aria-label="Portfolio cover">
       <div class="spine">
         <span class="spineText">PORTFOLIO</span>
@@ -32,24 +32,31 @@
           <p class="coverMeta">Eastern Michigan University • 2026</p>
         </div>
 
-        <div class="coverOrange">
-          <span class="pill"></span>
-          <span class="coverOrangeText">Selective Work & Projects</span>
+        <div class="coverCard">
+          <div class="cardTop">FINANCE PORTFOLIO</div>
+          <div class="cardName">Emerald Mills</div>
+          <div class="cardMeta">EMU • 2026</div>
+        </div>
+
+        <div class="coverAccent">
+          <div class="accentBar"></div>
+          <div class="accentText">Selective Work &amp; Projects</div>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT: the flipbook -->
-    <section class="bookShell" aria-label="Flip book">
-      <div class="tip">Tip: drag a page corner to flip (buttons work too)</div>
+    <!-- RIGHT OPEN FLIPBOOK -->
+    <section class="bookShell" aria-label="Flipbook pages">
+      <div class="hint">Tip: drag the page corner to flip (buttons work too)</div>
 
       <div class="bookWrap">
-        <div id="flipbook">
-          <!-- Page 1 (Right side when book opens) -->
+        <!-- This is the actual flipbook -->
+        <div id="flipbook" class="flipbook">
+          <!-- PAGE 1 -->
           <div class="page">
             <div class="pageInner">
-              <h2>Contents</h2>
-              <ol class="contents">
+              <h2 class="pageTitle">Contents</h2>
+              <ol class="toc">
                 <li>Intro</li>
                 <li>About</li>
                 <li>Projects</li>
@@ -60,25 +67,24 @@
             </div>
           </div>
 
-          <!-- Page 2 -->
+          <!-- PAGE 2 -->
           <div class="page">
             <div class="pageInner">
-              <h2>Intro</h2>
-              <h1 class="name">Emerald Mills</h1>
-              <p class="sub">Finance Portfolio • EMU • 2026</p>
-              <p class="muted">(Quick intro goes here later.)</p>
+              <h1 class="bigName">Emerald Mills</h1>
+              <p class="subLine">Finance Portfolio • EMU • 2026</p>
+              <p class="muted">(Intro page — quick summary goes here later.)</p>
             </div>
           </div>
 
-          <!-- Page 3 -->
+          <!-- PAGE 3 -->
           <div class="page">
             <div class="pageInner">
-              <h2>About</h2>
-              <p class="muted">Write 3–5 lines about you (keep it real).</p>
+              <h2 class="pageTitle">About</h2>
+              <p class="muted">Write 3–5 lines about you.</p>
 
               <div class="grid2">
-                <div class="card">
-                  <div class="cardTitle">Interests</div>
+                <div class="pillBox">
+                  <div class="pillTitle">INTERESTS</div>
                   <ul>
                     <li>Investing</li>
                     <li>Wealth management</li>
@@ -86,8 +92,8 @@
                   </ul>
                 </div>
 
-                <div class="card">
-                  <div class="cardTitle">Strengths</div>
+                <div class="pillBox">
+                  <div class="pillTitle">STRENGTHS</div>
                   <ul>
                     <li>Communication</li>
                     <li>Organization</li>
@@ -98,69 +104,70 @@
             </div>
           </div>
 
-          <!-- Page 4 -->
+          <!-- PAGE 4 -->
           <div class="page">
             <div class="pageInner">
-              <h2>Projects</h2>
+              <h2 class="pageTitle">Projects</h2>
               <p class="muted">Add your projects here later.</p>
+
               <div class="card">
-                <div class="cardTitle">Project 1</div>
-                <p>Short description + what you learned + tools used.</p>
+                <h3>Project 1</h3>
+                <p>Short description…</p>
+              </div>
+              <div class="card">
+                <h3>Project 2</h3>
+                <p>Short description…</p>
               </div>
             </div>
           </div>
 
-          <!-- Page 5 -->
+          <!-- PAGE 5 -->
           <div class="page">
             <div class="pageInner">
-              <h2>Resume</h2>
+              <h2 class="pageTitle">Resume</h2>
               <p class="muted">Paste highlights or link a PDF later.</p>
+
               <div class="card">
-                <div class="cardTitle">Highlights</div>
-                <ul>
-                  <li>Excel + pivot tables</li>
-                  <li>Customer service / business experience</li>
-                  <li>Finance coursework in progress</li>
-                </ul>
+                <h3>Experience</h3>
+                <p>• Bullet 1<br>• Bullet 2<br>• Bullet 3</p>
               </div>
             </div>
           </div>
 
-          <!-- Page 6 -->
+          <!-- PAGE 6 -->
           <div class="page">
             <div class="pageInner">
-              <h2>Contact</h2>
-              <p class="muted">Put your email + LinkedIn here.</p>
+              <h2 class="pageTitle">Contact</h2>
+              <p class="muted">Email / LinkedIn…</p>
+
               <div class="card">
-                <p><b>Email:</b> yourname@email.com</p>
-                <p><b>LinkedIn:</b> linkedin.com/in/yourhandle</p>
+                <p><strong>Email:</strong> yourname@email.com</p>
+                <p><strong>LinkedIn:</strong> linkedin.com/in/yourname</p>
               </div>
             </div>
           </div>
 
-          <!-- Page 7 -->
+          <!-- PAGE 7 -->
           <div class="page">
             <div class="pageInner">
-              <h2>Thank You</h2>
-              <p class="muted">Quick closing message.</p>
+              <h2 class="pageTitle">Thank You</h2>
+              <p class="muted">A short closing line.</p>
             </div>
           </div>
 
-          <!-- Page 8 (blank back page so it closes nicely) -->
+          <!-- PAGE 8 (blank back page so it closes clean) -->
           <div class="page">
-            <div class="pageInner">
-              <p class="muted">—</p>
-            </div>
+            <div class="pageInner"></div>
           </div>
         </div>
 
-        <!-- spine line overlay -->
+        <!-- REALISTIC SPINE (middle line) -->
         <div class="spineLine" aria-hidden="true"></div>
       </div>
 
       <div class="controls">
         <button id="prevBtn" type="button">Back</button>
-        <button id="nextBtn" type="button">Next</button>
+        <button id="nextBtn" type="button" class="primary">Next</button>
       </div>
     </section>
   </main>
