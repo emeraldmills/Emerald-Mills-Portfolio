@@ -1,21 +1,29 @@
-const pages = Array.from(document.querySelectorAll(".page"));
-let index = 0;
-
-function showPage(i) {
-  pages.forEach((p, idx) => {
-    p.classList.toggle("active", idx === i);
-    p.classList.toggle("flipped", idx < i);
+$(function () {
+  // Initialize Turn.js
+  $("#flipbook").turn({
+    width: $("#flipbook").width(),
+    height: 560,
+    autoCenter: true
   });
-}
 
-document.getElementById("nextBtn").addEventListener("click", () => {
-  if (index < pages.length - 1) index++;
-  showPage(index);
+  // Buttons
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    $("#flipbook").turn("next");
+  });
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    $("#flipbook").turn("previous");
+  });
+
+  // Keyboard support (optional)
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") $("#flipbook").turn("next");
+    if (e.key === "ArrowLeft") $("#flipbook").turn("previous");
+  });
+
+  // Resize handling
+  window.addEventListener("resize", () => {
+    const w = Math.min(720, document.querySelector(".openBookWrap").clientWidth);
+    $("#flipbook").turn("size", w, window.innerWidth < 980 ? 520 : 560);
+  });
 });
-
-document.getElementById("prevBtn").addEventListener("click", () => {
-  if (index > 0) index--;
-  showPage(index);
-});
-
-showPage(index);
