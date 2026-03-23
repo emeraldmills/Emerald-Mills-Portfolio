@@ -1,34 +1,21 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const $flip = $("#flipbook");
+const pages = Array.from(document.querySelectorAll(".page"));
+let index = 0;
 
-  // IMPORTANT: Turn.js needs real sizes
-  $flip.turn({
-    width: $flip.width(),
-    height: $flip.height(),
-    autoCenter: true,
-    gradients: true,
-    elevation: 50
+function showPage(i) {
+  pages.forEach((p, idx) => {
+    p.classList.toggle("active", idx === i);
+    p.classList.toggle("flipped", idx < i);
   });
+}
 
-  // Buttons
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    $flip.turn("next");
-  });
-
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    $flip.turn("previous");
-  });
-
-  // Keyboard (optional)
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") $flip.turn("next");
-    if (e.key === "ArrowLeft") $flip.turn("previous");
-  });
-
-  // Resize fix
-  window.addEventListener("resize", () => {
-    const w = $flip.width();
-    const h = $flip.height();
-    $flip.turn("size", w, h);
-  });
+document.getElementById("nextBtn").addEventListener("click", () => {
+  if (index < pages.length - 1) index++;
+  showPage(index);
 });
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  if (index > 0) index--;
+  showPage(index);
+});
+
+showPage(index);
