@@ -3,57 +3,52 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emerald Mills • Finance Portfolio</title>
+  <title>Emerald Mills | Finance Portfolio</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- jQuery + Turn.js (flip effect + page curl shading) -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
 </head>
 
 <body>
   <main class="desk">
-    <!-- LEFT: closed book cover -->
-    <section class="coverBook" aria-label="Closed portfolio book">
+    <!-- LEFT: Closed book cover -->
+    <section class="coverBook" aria-label="Portfolio cover">
       <div class="spine">
         <span class="spineText">PORTFOLIO</span>
       </div>
 
       <div class="coverFace">
         <div class="coverTop">
-          <div class="dotGrid"></div>
-          <div class="miniBar"></div>
+          <div class="dotGrid" aria-hidden="true"></div>
+          <div class="miniBar" aria-hidden="true"></div>
         </div>
 
-        <div class="coverCard">
-          <div class="smallCap">FINANCE PORTFOLIO</div>
-          <div class="name">Emerald Mills</div>
-          <div class="meta">Eastern Michigan University • 2026</div>
+        <div class="coverTitleBlock">
+          <div class="smallLabel">FINANCE PORTFOLIO</div>
+          <h1 class="coverTitle">Emerald Mills</h1>
+          <div class="coverMeta">Eastern Michigan University • 2026</div>
         </div>
 
         <div class="coverBand">
-          <div class="bandDot"></div>
-          <div class="bandText">Selective Work &amp; Projects</div>
+          <div class="bandPill">
+            <div class="bandPillTop">SELECTIVE WORK</div>
+            <div class="bandPillBottom">&amp; PROJECTS</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT: open book that flips -->
-    <section class="openArea" aria-label="Open flipbook">
-      <div class="hint">Tip: drag the page corner to flip (buttons work too).</div>
+    <!-- RIGHT: Open flipbook -->
+    <section class="bookWrap" aria-label="Flipbook">
+      <div class="topHint">Tip: click the top-right corner of a page (buttons work too)</div>
 
       <div class="controls">
-        <button id="prevBtn" type="button">Back</button>
-        <button id="nextBtn" type="button">Next</button>
+        <button id="prevBtn" class="btn" type="button">Back</button>
+        <button id="nextBtn" class="btn btnAccent" type="button">Next</button>
       </div>
 
-      <div class="bookWrap">
-        <!-- center gutter shadow line -->
-        <div class="gutter" aria-hidden="true"></div>
-
-        <div id="flipbook" class="flipbook">
-          <!-- Page 1 (RIGHT page will show first in double mode) -->
-          <div class="page">
+      <div id="book" class="book" aria-label="Open book">
+        <!-- SHEET 1 -->
+        <div class="sheet" data-sheet="0">
+          <div class="page front">
             <div class="pageInner">
               <h2>Contents</h2>
               <ol class="contents">
@@ -64,35 +59,40 @@
                 <li>Contact</li>
                 <li>Thank You</li>
               </ol>
-              <p class="tiny">Drag corners to flip.</p>
+              <p class="muted">Click the corner to flip.</p>
             </div>
+            <div class="corner cornerNext" title="Next"></div>
           </div>
 
-          <!-- Page 2 -->
-          <div class="page">
+          <div class="page back">
             <div class="pageInner">
-              <h1>Emerald Mills</h1>
-              <p class="sub">Finance Portfolio • EMU • 2026</p>
-              <p class="muted">(This is your intro page. You’ll add your real content later.)</p>
+              <h2>Intro</h2>
+              <h1 class="bigName">Emerald Mills</h1>
+              <p class="muted">Finance Portfolio • EMU • 2026</p>
+              <p>Quick summary goes here later.</p>
             </div>
+            <div class="corner cornerPrev" title="Back"></div>
           </div>
+        </div>
 
-          <!-- Page 3 -->
-          <div class="page">
+        <!-- SHEET 2 -->
+        <div class="sheet" data-sheet="1">
+          <div class="page front">
             <div class="pageInner">
-              <h2>About Me</h2>
-              <p class="muted">Write 3–5 lines about you. Keep it real.</p>
+              <h2>About</h2>
+              <p>Write 3–5 lines about you. Keep it real.</p>
+
               <div class="twoCol">
-                <div class="box">
-                  <h3>Interests</h3>
+                <div class="card">
+                  <div class="cardTitle">Interests</div>
                   <ul>
                     <li>Investing</li>
                     <li>Wealth management</li>
                     <li>Financial planning</li>
                   </ul>
                 </div>
-                <div class="box">
-                  <h3>Strengths</h3>
+                <div class="card">
+                  <div class="cardTitle">Strengths</div>
                   <ul>
                     <li>Communication</li>
                     <li>Organization</li>
@@ -101,57 +101,66 @@
                 </div>
               </div>
             </div>
+            <div class="corner cornerNext" title="Next"></div>
           </div>
 
-          <!-- Page 4 -->
-          <div class="page">
+          <div class="page back">
             <div class="pageInner">
               <h2>Projects</h2>
-              <p class="muted">Add your projects here later.</p>
-              <div class="box">
-                <strong>Project 1:</strong> (title) — 1–2 lines about what you did.
+              <p>Add your projects here later.</p>
+
+              <div class="project">
+                <div class="projectTitle">Project 1</div>
+                <div class="muted">One sentence about it.</div>
+              </div>
+
+              <div class="project">
+                <div class="projectTitle">Project 2</div>
+                <div class="muted">One sentence about it.</div>
               </div>
             </div>
+            <div class="corner cornerPrev" title="Back"></div>
           </div>
+        </div>
 
-          <!-- Page 5 -->
-          <div class="page">
+        <!-- SHEET 3 -->
+        <div class="sheet" data-sheet="2">
+          <div class="page front">
             <div class="pageInner">
               <h2>Resume</h2>
-              <p class="muted">Paste highlights or link a PDF later.</p>
-              <div class="box">
-                <strong>Skills:</strong> Excel • PowerPoint • Research • Communication
-              </div>
+              <p>Paste highlights or link a PDF later.</p>
+              <p class="muted">Example: “Download Resume” button.</p>
             </div>
+            <div class="corner cornerNext" title="Next"></div>
           </div>
 
-          <!-- Page 6 -->
-          <div class="page">
+          <div class="page back">
             <div class="pageInner">
               <h2>Contact</h2>
-              <p class="muted">Email / LinkedIn / (whatever you want to share).</p>
-              <div class="box">
-                Email: youremail@example.com<br />
-                LinkedIn: linkedin.com/in/yourname
-              </div>
+              <p>Email: <span class="muted">youremail@example.com</span></p>
+              <p>LinkedIn: <span class="muted">linkedin.com/in/yourname</span></p>
             </div>
+            <div class="corner cornerPrev" title="Back"></div>
           </div>
+        </div>
 
-          <!-- Page 7 -->
-          <div class="page">
+        <!-- SHEET 4 -->
+        <div class="sheet" data-sheet="3">
+          <div class="page front">
             <div class="pageInner">
               <h2>Thank You</h2>
-              <p class="muted">Short closing line.</p>
+              <p>Thanks for reading my portfolio.</p>
             </div>
+            <div class="corner cornerNext" title="Next"></div>
           </div>
 
-          <!-- Page 8 (blank back cover page) -->
-          <div class="page">
+          <div class="page back">
             <div class="pageInner">
-              <p class="muted">—</p>
+              <h2>End</h2>
+              <p class="muted">You’re at the end.</p>
             </div>
+            <div class="corner cornerPrev" title="Back"></div>
           </div>
-
         </div>
       </div>
     </section>
