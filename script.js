@@ -1,54 +1,45 @@
-$(function () {
-  const $flip = $("#flipbook");
+const sheets = Array.from(document.querySelectorAll(".sheet"));
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
 
-  // If Turn.js didn’t load, stop here (prevents “it shows code” / broken)
-  if (typeof $flip.turn !== "function") {
-    alert("Turn.js did not load. Check your script links and try refresh (Cmd+Shift+R).");
-    return;
-  }
+let index = 0; // which sheet we are currently on (0 = first)
 
-  function sizeBook() {
-    const wrap = document.querySelector(".bookWrap");
-    const w = wrap.clientWidth;
-    const h = wrap.clientHeight;
+function updateButtons() {
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === sheets.length;
+  prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
+  nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
+}
 
-    // double-page book width should be close to wrap width
-    $flip.turn("size", w, h);
-  }
+function flipNext() {
+  if (index >= sheets.length) return;
+  sheets[index].classList.add("flipped");
+  index++;
+  updateButtons();
+}
 
-  // Init turn.js
-  $flip.turn({
-    width: document.querySelector(".bookWrap").clientWidth,
-    height: document.querySelector(".bookWrap").clientHeight,
+function flipPrev() {
+  if (index <= 0) return;
+  index--;
+  sheets[index].classList.remove("flipped");
+  updateButtons();
+}
 
-    display: "double",
-    autoCenter: true,
+nextBtn.addEventListener("click", flipNext);
+prevBtn.addEventListener("click", flipPrev);
 
-    // This is the “speed” (ms). Higher = slower.
-    duration: 1100,
-
-    // These two make it feel more like paper
-    acceleration: true,
-    gradients: true,
-
-    // Makes page edges feel thicker / more realistic
-    elevation: 50
-  });
-
-  // Buttons
-  $("#nextBtn").on("click", function () {
-    $flip.turn("next");
-  });
-
-  $("#prevBtn").on("click", function () {
-    $flip.turn("previous");
-  });
-
-  // Resize handler
-  $(window).on("resize", function () {
-    sizeBook();
-  });
-
-  // First size
-  sizeBook();
+/* Click page corners */
+document.querySelectorAll(".cornerNext").forEach(el => {
+  el.addEventListener("click", flipNext);
 });
+document.querySelectorAll(".cornerPrev").forEach(el => {
+  el.addEventListener("click", flipPrev);
+});
+
+/* Optional: keyboard support */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") flipNext();
+  if (e.key === "ArrowLeft") flipPrev();
+});
+
+updateButtons();
