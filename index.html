@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emerald Mills — Finance Portfolio</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Your CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
   <!-- NAV -->
   <nav class="nav" id="mainNav">
-    <a href="#home" class="nav-logo">Emerald <span>Mills</span></a>
+    <a class="nav-logo" href="#home">Emerald <span>Mills</span></a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
 
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
@@ -26,120 +26,95 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
   </nav>
 
-  <!-- HERO (FLIP) -->
-  <section class="flip-hero" id="home">
-    <div class="flip-card" id="heroCard">
-
-      <!-- FRONT -->
-      <div class="flip-front">
-        <!-- Put your hero image in /images and name it hero.jpg or update the path -->
-        <img src="images/hero.jpg" alt="Emerald Mills" class="flip-photo" />
-
-        <div class="flip-front-overlay">
-          <p class="flip-eyebrow">Eastern Michigan University · BBA Finance</p>
-          <h1 class="flip-front-title">Emerald<br>Mills</h1>
-          <p class="flip-front-sub">Finance · Analysis · Growth</p>
-        </div>
-
-        <button class="flip-trigger" id="flipBtn" type="button">
-          <span>Explore My Work</span>
-          <span class="flip-trigger-icon">↻</span>
-        </button>
-      </div>
-
-      <!-- BACK -->
-      <div class="flip-back">
-        <div class="flip-back-grid"></div>
-
-        <button class="flip-back-btn" id="flipBackBtn" type="button">↩ Back</button>
-
-        <div class="hero-back-content">
-          <p class="hero-back-eyebrow">EMU · BBA Finance · Dec 2027</p>
-          <h1 class="hero-back-title">Finance Student<br><em>Building</em> Real Skills</h1>
-
-          <p class="hero-back-sub">
-            Finance major focused on learning by doing: Excel projects, coursework, and real-world experience.
-            Seeking internships in finance, analytics, or corporate roles where I can grow fast.
-          </p>
-
-          <div class="hero-back-actions">
-            <a href="#experience" class="btn btn-gold">See Experience</a>
-            <a href="#contact" class="btn btn-outline btn-outline-on-dark">Get In Touch</a>
-          </div>
-        </div>
-      </div>
-
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-media">
+      <!-- HERO IMAGE -->
+      <img
+        src="images/Typography%20Logo.png"
+        alt="Emerald Mills hero image"
+        class="hero-img"
+      />
+      <div class="hero-overlay"></div>
     </div>
-  </section>
+
+    <div class="hero-content container">
+      <p class="hero-eyebrow">Eastern Michigan University · BBA Finance</p>
+      <h1 class="hero-title">Emerald Mills</h1>
+      <p class="hero-sub">
+        Finance portfolio — projects, skills, and experience in one place.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#projects">View Projects</a>
+        <a class="btn btn-outline" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
 
   <!-- ABOUT -->
-  <section class="about section" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-img-wrap aos">
-          <!-- Put your portrait in /images and name it portrait.jpg or update the path -->
-          <img src="images/portrait.jpg" alt="Emerald Mills" class="about-img" />
-        </div>
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="about-photo-wrap">
+        <!-- ABOUT IMAGE -->
+        <img
+          src="images/Copy%20of%20White%20Minimalist%20Handwritten%20Signature%20Typography%20Logo.PNG"
+          alt="About Emerald Mills"
+          class="about-photo"
+        />
+      </div>
 
-        <div class="about-text aos">
-          <div class="label">About Me</div>
-          <h2>A Business Mind with a <em>Finance Focus</em></h2>
+      <div class="about-text">
+        <div class="label">About Me</div>
+        <h2 class="h2">A finance student building real skills.</h2>
+        <p>
+          I’m Emerald Mills, a BBA Finance student at Eastern Michigan University.
+          I’m interested in corporate finance, investing, and using data to make better decisions.
+        </p>
+        <p>
+          This site is where I’m collecting class projects + practical work as I grow.
+        </p>
 
-          <p>
-            I’m Emerald Mills, a student at Eastern Michigan University pursuing a BBA in Finance (Dec 2027).
-            I’m building skills in financial analysis, Excel, and business problem-solving.
-          </p>
-
-          <p>
-            I like work that mixes data + decision making: budgeting, variance analysis, dashboards, and practical finance projects.
-          </p>
-
-          <div class="about-tags">
-            <span class="tag accent">Finance</span>
-            <span class="tag accent">Excel</span>
-            <span class="tag">EMU</span>
-            <span class="tag">Dec 2027</span>
-          </div>
+        <div class="tag-row">
+          <span class="tag accent">Finance</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Data</span>
+          <span class="tag">EMU</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- EXPERIENCE -->
-  <section class="experience section alt-bg" id="experience">
+  <section class="section alt" id="experience">
     <div class="container">
-      <div class="label center">Work History</div>
-      <h2 class="center section-title">My <em>Experience</em></h2>
+      <div class="label center">Experience</div>
+      <h2 class="h2 center">Work & Coursework</h2>
 
-      <div class="exp-timeline">
-        <div class="exp-item aos">
-          <div class="exp-year">Present</div>
-          <div class="exp-body">
-            <h3>Leasing Agent</h3>
-            <span class="exp-org">Real Estate · Property Management</span>
-            <p>Client communication, negotiations, and managing leasing workflows in a fast-paced environment.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-when">Present</div>
+          <div class="timeline-body">
+            <h3 class="h3">Leasing Agent</h3>
+            <p class="muted">Client communication, contracts, follow-ups, and sales pipeline work.</p>
           </div>
         </div>
 
-        <div class="exp-item aos">
-          <div class="exp-year">Internship</div>
-          <div class="exp-body">
-            <h3>Human Resources Intern</h3>
-            <span class="exp-org">HR Department</span>
-            <p>Supported recruiting and onboarding processes and learned how businesses structure operations and teams.</p>
+        <div class="timeline-item">
+          <div class="timeline-when">2025</div>
+          <div class="timeline-body">
+            <h3 class="h3">Human Resources Intern</h3>
+            <p class="muted">Recruiting coordination, onboarding support, and HR operations.</p>
           </div>
         </div>
 
-        <div class="exp-item aos">
-          <div class="exp-year">Coursework</div>
-          <div class="exp-body">
-            <h3>Excel & Finance Projects</h3>
-            <span class="exp-org">EMU · Business Coursework</span>
-            <p>Built Excel models, dashboards, and business analysis work connected to real scenarios.</p>
+        <div class="timeline-item">
+          <div class="timeline-when">School</div>
+          <div class="timeline-body">
+            <h3 class="h3">Excel + Business Projects</h3>
+            <p class="muted">Dashboards, charts, pivots, and analysis projects (coursework).</p>
           </div>
         </div>
       </div>
@@ -147,42 +122,39 @@
   </section>
 
   <!-- SKILLS -->
-  <section class="skills section" id="skills">
+  <section class="section" id="skills">
     <div class="container">
-      <div class="label center">Toolkit</div>
-      <h2 class="center section-title">Skills & <em>Competencies</em></h2>
+      <div class="label center">Skills</div>
+      <h2 class="h2 center">What I’m working on</h2>
 
-      <div class="skills-grid">
-        <div class="skill-card aos">
-          <span class="skill-icon">📊</span>
-          <h4>Finance & Analysis</h4>
-          <div class="skill-pills">
-            <span class="pill">Excel</span>
+      <div class="cards">
+        <div class="card">
+          <h3 class="h3">Finance</h3>
+          <p class="muted">Basics of corporate finance, investing, and analysis.</p>
+          <div class="pill-row">
+            <span class="pill">Financial modeling</span>
             <span class="pill">Budgeting</span>
-            <span class="pill">Variance Analysis</span>
-            <span class="pill">Dashboards</span>
+            <span class="pill">Analysis</span>
           </div>
         </div>
 
-        <div class="skill-card aos">
-          <span class="skill-icon">🧠</span>
-          <h4>Business Skills</h4>
-          <div class="skill-pills">
+        <div class="card">
+          <h3 class="h3">Excel</h3>
+          <p class="muted">Charts, pivot tables, formulas, dashboards.</p>
+          <div class="pill-row">
+            <span class="pill">PivotTables</span>
+            <span class="pill">XLOOKUP</span>
+            <span class="pill">Charts</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="h3">Professional Skills</h3>
+          <p class="muted">Communication, organization, consistency.</p>
+          <div class="pill-row">
             <span class="pill">Communication</span>
             <span class="pill">Organization</span>
-            <span class="pill">Client Relations</span>
-            <span class="pill">Negotiation</span>
-          </div>
-        </div>
-
-        <div class="skill-card aos">
-          <span class="skill-icon">💻</span>
-          <h4>Tools</h4>
-          <div class="skill-pills">
-            <span class="pill">Excel</span>
-            <span class="pill">PowerPoint</span>
-            <span class="pill">Google Suite</span>
-            <span class="pill">Canva</span>
+            <span class="pill">Detail</span>
           </div>
         </div>
       </div>
@@ -190,87 +162,62 @@
   </section>
 
   <!-- PROJECTS -->
-  <section class="projects section alt-bg" id="projects">
+  <section class="section alt" id="projects">
     <div class="container">
-      <div class="label center">Portfolio</div>
-      <h2 class="center section-title">Featured <em>Projects</em></h2>
+      <div class="label center">Projects</div>
+      <h2 class="h2 center">Featured work</h2>
 
-      <div class="projects-grid">
-        <article class="project-card aos">
+      <div class="projects">
+        <article class="project">
           <div class="project-top"></div>
           <div class="project-body">
-            <span class="project-tag">Excel · Finance</span>
-            <h3>Budget Variance Model</h3>
-            <p>Excel model comparing budget vs actual with clear variance outputs and a clean summary view.</p>
+            <h3 class="h3">Excel Lookup Practice</h3>
+            <p class="muted">Used lookup functions to pull product + supplier details.</p>
           </div>
         </article>
 
-        <article class="project-card aos">
+        <article class="project">
           <div class="project-top"></div>
           <div class="project-body">
-            <span class="project-tag">Analytics</span>
-            <h3>Dashboard Practice</h3>
-            <p>Practice dashboards using charts, KPIs, and organized visuals for quick insights.</p>
+            <h3 class="h3">PivotTable Sales Dataset</h3>
+            <p class="muted">Created pivots + summaries by region and sales rep.</p>
           </div>
         </article>
 
-        <article class="project-card aos">
+        <article class="project">
           <div class="project-top"></div>
           <div class="project-body">
-            <span class="project-tag">Operations</span>
-            <h3>Process Improvement Notes</h3>
-            <p>Documenting workflows and identifying small improvements that save time and reduce confusion.</p>
+            <h3 class="h3">Revenue vs Profit Margin Charts</h3>
+            <p class="muted">Combo charts + waterfall/cumulative profit visualization.</p>
           </div>
         </article>
-      </div>
-
-      <div class="center" style="margin-top:2.5rem">
-        <a class="btn btn-outline" href="#" id="resumeBtn">⬇ Resume (coming soon)</a>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="contact section" id="contact">
-    <div class="container">
-      <div class="contact-wrap">
-        <div class="label">Let’s Connect</div>
-        <h2>Ready to <em>Talk?</em></h2>
-        <div class="contact-divider"></div>
+  <section class="section" id="contact">
+    <div class="container contact">
+      <div class="label center">Contact</div>
+      <h2 class="h2 center">Let’s connect</h2>
+      <p class="muted center">
+        Want to reach out about an internship, project, or networking?
+      </p>
 
-        <p>
-          If you’re a recruiter, collaborator, or student — I’m open to connecting.
-        </p>
-
-        <!-- Replace with your real email if you want it public -->
-        <a href="mailto:yourname@emich.edu" class="btn btn-primary" style="margin-top:1.25rem">
-          ✉ Email Me
-        </a>
-
-        <div class="contact-links">
-          <!-- Replace with your real LinkedIn URL -->
-          <a class="contact-link" href="https://linkedin.com" target="_blank" rel="noreferrer">
-            <span>in</span> LinkedIn
-          </a>
-
-          <a class="contact-link" href="mailto:yourname@emich.edu">
-            <span>@</span> Email
-          </a>
-        </div>
+      <div class="contact-row">
+        <a class="contact-link" href="https://www.linkedin.com/in/emeraldmills" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="contact-link" href="#" onclick="alert('Add your email link here when ready!')">Email</a>
+        <a class="contact-link" href="#" onclick="alert('Add resume PDF link when ready!')">Resume</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <span class="nav-logo footer-logo">Emerald <span>Mills</span></span>
-      <p>Eastern Michigan University · BBA Finance · Dec 2027</p>
-      <p class="footer-small">© 2026 Emerald Mills</p>
+      <p>© 2026 Emerald Mills · Finance Portfolio</p>
     </div>
   </footer>
 
-  <!-- Your JS -->
   <script src="script.js"></script>
 </body>
 </html>
